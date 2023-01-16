@@ -1,0 +1,32 @@
+.success-section {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 12px;
+}
+
+.success-section h1 {
+    color: #323232;
+    font-size: calc(0.8vw + 24px);
+}
+
+.success-section p {
+    color: #323232;
+    font-size: calc(0.4vw + 16px);
+    opacity: 0.9;
+}
+
+.success-section a {
+    padding: 8px 32px;
+    font-size: calc(0.35vw + 12px);
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    background-color: #323232;
+    color: #FEFEFE;
+    cursor: pointer;
+    display: inline-block;
+    margin: 8px 0 0 0;
+}

@@ -1,0 +1,55 @@
+.subscribe-section {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 12px;
+}
+
+.subscribe-section h1 {
+    color: #323232;
+    font-size: calc(0.8vw + 24px);
+}
+
+.subscribe-section p {
+    color: #323232;
+    font-size: calc(0.4vw + 16px);
+    opacity: 0.9;
+}
+
+.subscribe-section form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 12px 0 0 0;
+}
+
+.subscribe-section form input {
+    padding: 8px 6px;
+    font-size: calc(0.35vw + 12px);
+    border: 2px solid #32323232;
+    width: 100%;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+.subscribe-section form input:focus {
+    border: 2px solid #323232;
+}
+
+.subscribe-section form button {
+    padding: 8px 32px;
+    font-size: calc(0.35vw + 12px);
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    background-color: #323232;
+    color: #FEFEFE;
+    cursor: pointer;
+}

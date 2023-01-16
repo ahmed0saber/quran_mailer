@@ -1,0 +1,74 @@
+.contact-us-section {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 12px;
+}
+
+.contact-us-section h1 {
+    color: #323232;
+    font-size: calc(0.8vw + 24px);
+}
+
+.contact-us-section p {
+    color: #323232;
+    font-size: calc(0.4vw + 16px);
+    opacity: 0.9;
+}
+
+.contact-us-section form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 12px 0 0 0;
+}
+
+.contact-us-section form input {
+    padding: 8px 6px;
+    font-size: calc(0.35vw + 12px);
+    border: 2px solid #32323232;
+    width: 100%;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+.contact-us-section form input:focus {
+    border: 2px solid #323232;
+}
+
+.contact-us-section form textarea {
+    padding: 8px 6px;
+    font-size: calc(0.35vw + 12px);
+    border: 2px solid #32323232;
+    height: 120px;
+    resize: none;
+    width: 100%;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    display: block;
+}
+
+.contact-us-section form textarea:focus {
+    border: 2px solid #323232;
+}
+
+.contact-us-section form button {
+    padding: 8px 32px;
+    font-size: calc(0.35vw + 12px);
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    background-color: #323232;
+    color: #FEFEFE;
+    cursor: pointer;
+}
