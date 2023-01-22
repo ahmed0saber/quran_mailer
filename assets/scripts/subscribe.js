@@ -7,7 +7,7 @@ const submitSubscriptionForm = () => {
         return
     }
 
-    fetch("http://54.242.5.95/subscribe/", {
+    fetch("https://quran-mailer-api.onrender.com/subscribe/", {
         method: "POST",
         body: JSON.stringify({
             email: emailField.value,

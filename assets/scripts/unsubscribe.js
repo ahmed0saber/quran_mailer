@@ -9,9 +9,11 @@ const getUserIdFromUrlParams = () => {
 const unsubscribeUser = () => {
     const userId = getUserIdFromUrlParams()
 
-    fetch(`http://54.242.5.95/unsubscribe/${userId}/`, {
+    fetch("https://quran-mailer-api.onrender.com/unsubscribe/", {
         method: "POST",
-        body: JSON.stringify({}),
+        body: JSON.stringify({
+            id: userId
+        }),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
         }

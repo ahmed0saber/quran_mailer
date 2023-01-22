@@ -10,7 +10,7 @@ const submitContactForm = () => {
         return
     }
 
-    fetch("http://54.242.5.95/contact/", {
+    fetch("https://quran-mailer-api.onrender.com/contact/", {
         method: "POST",
         body: JSON.stringify({
             name: nameField.value,
