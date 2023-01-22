@@ -7,19 +7,20 @@ const submitSubscriptionForm = () => {
         return
     }
 
-    // fetch("http://54.242.5.95/subscribe/", {
-    //     method: "POST",
-    //     body: JSON.stringify({
-    //         email: emailField.value
-    //     }),
-    //     headers: {
-    //         "Content-type": "application/json; charset=UTF-8"
-    //     }
-    // })
-    // .then(res => res.json())
-    // .then(data => {
-    //     window.location.href = "../../success/"
-    // })
+    fetch("http://54.242.5.95/subscribe/", {
+        method: "POST",
+        body: JSON.stringify({
+            email: emailField.value,
+            active: true
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        window.location.href = "../../success/"
+    })
 }
 
 const isEmailFieldValid = () => {

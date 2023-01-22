@@ -8,20 +8,17 @@ const getUserIdFromUrlParams = () => {
 
 const unsubscribeUser = () => {
     const userId = getUserIdFromUrlParams()
-    console.log(userId)
 
-    // fetch("http://54.242.5.95/unsubscribe/", {
-    //     method: "POST",
-    //     body: JSON.stringify({
-    //         email: emailField.value
-    //     }),
-    //     headers: {
-    //         "Content-type": "application/json; charset=UTF-8"
-    //     }
-    // })
-    // .then(res => res.json())
-    // .then(data => {
-    //     window.location.href = "../../success/"
-    // })
+    fetch(`http://54.242.5.95/unsubscribe/${userId}/`, {
+        method: "POST",
+        body: JSON.stringify({}),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        window.location.href = "../../success/"
+    })
 }
 unsubscribeUser()
