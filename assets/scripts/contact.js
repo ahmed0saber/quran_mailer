@@ -1,6 +1,7 @@
 const nameField = document.querySelector(".js-name-input")
 const emailField = document.querySelector(".js-email-input")
 const msgField = document.querySelector(".js-msg-input")
+const contactBtn = document.querySelector(".contact-btn")
 const NAME_REGEX_PATTERN = /^([a-z]|[A-Z])\w{4,}$/
 const EMAIL_REGEX_PATTERN = /^[a-z]\w{2,}@\w{2,}\.\w{2,}$/
 
@@ -10,6 +11,7 @@ const submitContactForm = () => {
         return
     }
 
+    contactBtn.classList.add("is-loading")
     fetch("https://quran-mailer-api.onrender.com/contact/", {
         method: "POST",
         body: JSON.stringify({
@@ -25,7 +27,11 @@ const submitContactForm = () => {
     .then(data => {
         window.location.href = "../../success/"
     })
+    .finally(() => {
+        contactBtn.classList.remove("is-loading")
+    })
 }
+contactBtn.addEventListener("click", submitContactForm)
 
 const isNameFieldValid = () => {
     const errorHolder = nameField.closest(".js-input-container").querySelector(".js-error-holder")

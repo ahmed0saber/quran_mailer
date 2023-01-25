@@ -1,4 +1,5 @@
 const emailField = document.querySelector(".js-email-input")
+const subscribeBtn = document.querySelector(".subscribe-btn")
 const EMAIL_REGEX_PATTERN = /^[a-z]\w{2,}@\w{2,}\.\w{2,}$/
 
 const submitSubscriptionForm = () => {
@@ -7,6 +8,7 @@ const submitSubscriptionForm = () => {
         return
     }
 
+    subscribeBtn.classList.add("is-loading")
     fetch("https://quran-mailer-api.onrender.com/subscribe/", {
         method: "POST",
         body: JSON.stringify({
@@ -21,7 +23,11 @@ const submitSubscriptionForm = () => {
     .then(data => {
         window.location.href = "../../success/"
     })
+    .finally(() => {
+        subscribeBtn.classList.remove("is-loading")
+    })
 }
+subscribeBtn.addEventListener("click", submitSubscriptionForm)
 
 const isEmailFieldValid = () => {
     const errorHolder = emailField.closest(".js-input-container").querySelector(".js-error-holder")
