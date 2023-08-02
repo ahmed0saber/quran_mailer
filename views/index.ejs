@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<%- include('partials/head', {title: "Home"}) %>
+
+<body>
+    <%- include('partials/navbar', {active: "home"}) %>
+    <main>
+        <section class="hero-section">
+            <div class="text-container">
+                <h1>
+                    خدمة إرسال آيات قرآنية عبر البريد الالكتروني
+                </h1>
+                <p>
+                    إشترك فى خدمتنا مجانا لتصلك بعض آيات القرآن بشكل دوري عبر بريدك الالكتروني
+                </p>
+                <div class="btns-container">
+                    <a href="./subscribe/" class="subscribe-btn">
+                        اشترك الان
+                    </a>
+                    <a href="./contact/" class="contact-btn">
+                        تواصل معنا
+                    </a>
+                </div>
+            </div>
+        </section>
+        <div class="attribute">
+            <p>
+                صورة بواسطة
+                <a target="_blank"
+                    href="https://unsplash.com/@grstocks?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">GR
+                    Stocks</a>
+                على
+                <a target="_blank"
+                    href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+            </p>
+        </div>
+    </main>
+    <%- include('partials/footer') %>
+</body>
+
+</html>
