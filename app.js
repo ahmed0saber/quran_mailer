@@ -59,7 +59,7 @@ app.post('/api/subscribe', (req, res) => {
     })
 })
 
-app.get('/api/cron-job/send-mails', (req, res) => {
+app.post(process.env.CRON_JOB_ROUTE, (req, res) => {
     sendMailsToSubscribers()
 
     res.status(200).send({
