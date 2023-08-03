@@ -152,17 +152,26 @@ const sendVerseToSubscriber = (email, verse) => {
         to: email,
         subject: "Quran Mailer",
         html: `
-            <div dir="rtl">
-                <p>
-                سورة: 
-                ${verse.sora}
-                </p>
-                <p>
-                الآية: 
-                ${verse.ayah}
-                </p>
-                <hr/>
-                <p>${verse.content}</p>
+            <div style="background-color:#F7F7F7;direction:rtl;text-align:right;padding:12px">
+                <h2
+                    style="color:#323232;
+                    width:fit-content;
+                    border-bottom:2px solid #323232;"
+                >
+                    الآية ${verse.ayah} من سورة ${verse.sora}
+                </h2>
+                <div style="padding:2px;border:2px solid #28a745;border-radius:4px;">
+                    <p
+                        style="background-color:#28a745;
+                        color:#F7F7F7;
+                        padding:12px;
+                        font-size:18px;
+                        border-radius:4px;
+                        margin:0;"
+                    >
+                        ${verse.content}
+                    </p>
+                </div>
             </div>
         `
     }
