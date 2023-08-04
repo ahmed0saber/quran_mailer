@@ -7,6 +7,7 @@ const nodemailer = require('nodemailer')
 const dotenv = require('dotenv')
 dotenv.config()
 const PORT = process.env.PORT
+const GMAIL_USER = process.env.GMAIL_USER
 const GMAIL_PASSWORD = process.env.GMAIL_PASSWORD
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
@@ -14,7 +15,7 @@ app.use(express.static('public'))
 var transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'quran0mailer@gmail.com',
+        user: GMAIL_USER,
         pass: GMAIL_PASSWORD
     }
 })
@@ -84,8 +85,8 @@ mongoose.connect(`mongodb+srv://${process.env.MONGOOSE_USER}:${process.env.MONGO
 
 const sendContactEmail = (name, email, message) => {
     const mailOptions = {
-        from: "quran0mailer@gmail.com",
-        to: "quran0mailer@gmail.com",
+        from: GMAIL_USER,
+        to: GMAIL_USER,
         subject: "Contact US",
         html: `
             <p>Name: ${name}</p>
@@ -148,7 +149,7 @@ const getRandomVerse = () => {
 
 const sendVerseToSubscriber = (email, verse) => {
     const mailOptions = {
-        from: "quran0mailer@gmail.com",
+        from: GMAIL_USER,
         to: email,
         subject: "Quran Mailer",
         html: `
