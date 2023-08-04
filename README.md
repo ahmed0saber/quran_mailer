@@ -16,7 +16,7 @@ https://www.mongodb.com/atlas/database
 
 - then, run `npm i`, `npm install`, `yarn` or any alternative to start installing all the required packages.
 
-- create a `.env` file samiliar to `.env.example` and fill these variables. The first variable is `PORT`, you can set it to `8080` for example. The second variable is `GMAIL_USER`, set it to your gmail, for example: `quran0mailer@gmail.com`. The third variable is `GMAIL_PASSWORD`, follow this steps to get your own: https://stackoverflow.com/questions/45478293/username-and-password-not-accepted-when-using-nodemailer. Finally, go to: https://www.mongodb.com/atlas/database. Create your database, get a `USER` and `PASSWORD` to fill the variable 4 and 5. Don't forget to set any `CRON_JOB_ROUTE` such as `/api/cron-job`.
+- create a `.env` file samiliar to `.env.example` and fill these variables. The first variable is `PORT`, you can set it to `8080` for example. The second variable is `GMAIL_USER`, set it to your gmail, for example: `quran0mailer@gmail.com`. The third variable is `GMAIL_PASSWORD`, follow this steps to get your own: https://stackoverflow.com/questions/45478293/username-and-password-not-accepted-when-using-nodemailer. Finally, go to: https://www.mongodb.com/atlas/database. Create your database, then create a collection for `subscribers`, and finally get a `USER` and `PASSWORD` to fill the variable 4 and 5. Don't forget to set any `CRON_JOB_ROUTE` such as `/api/cron-job`.
 
 - run `node app.js`
 
