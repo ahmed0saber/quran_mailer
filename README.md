@@ -14,7 +14,7 @@ https://www.mongodb.com/atlas/database
 
 - first, make sure you have `node` installed on your device.
 
-- then, run ```    npm i    ```, ```    npm install    ```, ```    yarn    ``` or any alternative to start installing all the required packages.
+- then, run `npm i`, `npm install`, `yarn` or any alternative to start installing all the required packages.
 
 - create a `.env` file samiliar to `.env.example` and fill these variables. The first variable is `PORT`, you can set it to `8080` for example. The second variable is `GMAIL_USER`, set it to your gmail, for example: `quran0mailer@gmail.com`. The third variable is `GMAIL_PASSWORD`, follow this steps to get your own: https://stackoverflow.com/questions/45478293/username-and-password-not-accepted-when-using-nodemailer. Finally, go to: https://www.mongodb.com/atlas/database. Create your database, get a `USER` and `PASSWORD` to fill the variable 4 and 5. Don't forget to set any `CRON_JOB_ROUTE` such as `/api/cron-job`.
 
@@ -24,7 +24,7 @@ https://www.mongodb.com/atlas/database
 
 This project is open to all types of contributing:
 
-- you can add a new quranic verse in the `app.js` file, but first make sure it's not duplicate.
+- you can add a new quranic verse in the `data.js` file, but first make sure it's not duplicate.
 
 - you can recommend any new feature via the `issues` page.
 
