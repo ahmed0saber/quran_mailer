@@ -1,5 +1,5 @@
 // GLOBAL
-const EMAIL_REGEX_PATTERN = /^[a-z]\w{2,}@\w{2,}\.\w{2,}$/
+const EMAIL_REGEX_PATTERN = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
 
 // SUBSCRIBE
 const subscribeEmailField = document.querySelector(".js-email-input")
