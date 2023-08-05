@@ -5,12 +5,23 @@ const contactBtn = document.querySelector(".contact-btn")
 const NAME_REGEX_PATTERN = /^([a-z]|[A-Z])\w{4,}$/
 const EMAIL_REGEX_PATTERN = /^[a-z]\w{2,}@\w{2,}\.\w{2,}$/
 
+// Function to disable buttons
+function disableButtons() {
+    contactBtn.disabled = true;
+}
+
+// Function to enable buttons
+function enableButtons() {
+    contactBtn.disabled = false;
+}
+
 const submitContactForm = () => {
     const isValid = (isEmailFieldValid() & isNameFieldValid() & isMsgFieldValid()) === 0 ? false : true
     if(!isValid){
         return
     }
 
+    disableButtons();
     contactBtn.classList.add("is-loading")
     fetch("https://quran-mailer-api.onrender.com/contact/", {
         method: "POST",
@@ -29,6 +40,7 @@ const submitContactForm = () => {
     })
     .finally(() => {
         contactBtn.classList.remove("is-loading")
+        enableButtons();
     })
 }
 contactBtn.addEventListener("click", submitContactForm)
