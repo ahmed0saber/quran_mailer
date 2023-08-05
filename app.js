@@ -133,11 +133,15 @@ const sendMailsToSubscribers = () => {
         })
 }
 
+const JobScheduler = require('./utils/job-scheduler')
+const mailsScheduler = new JobScheduler()
+
 const sendCronJobEmails = (subscribers) => {
     const currentVerse = getRandomVerse()
     subscribers.forEach(subscriber => {
-        sendVerseToSubscriber(subscriber.email, currentVerse)
+        mailsScheduler.enqueue(subscriber.email)
     })
+    sendVerseToSubscribersInQueue(currentVerse)
 }
 
 const getRandomVerse = () => {
@@ -158,10 +162,15 @@ const updateSubscriberValidity = (email, isValid) => {
         })
 }
 
-const sendVerseToSubscriber = (email, verse) => {
+const sendVerseToSubscribersInQueue = (verse) => {
+    if (mailsScheduler.size() <= 0) {
+        return
+    }
+
+    const processedEmail = mailsScheduler.dequeue()
     const mailOptions = {
         from: GMAIL_USER,
-        to: email,
+        to: processedEmail,
         subject: "Quran Mailer",
         html: `
             <div style="background-color:#F7F7F7;direction:rtl;text-align:right;padding:12px">
@@ -190,10 +199,12 @@ const sendVerseToSubscriber = (email, verse) => {
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             if (error.responseCode === undefined) {
-                updateSubscriberValidity(email, false)
+                updateSubscriberValidity(processedEmail, false)
             }
         } else {
-            console.log(`Email sent to ${email}: ` + info.response)
+            console.log(`Email sent to ${processedEmail}: ` + info.response)
         }
+
+        sendVerseToSubscribersInQueue(verse)
     })
 }
