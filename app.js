@@ -75,7 +75,7 @@ app.use((req, res, next) => {
 const Subscriber = require('./models/subscriberSchema')
 const mongoose = require('mongoose')
 mongoose.set('strictQuery', false)
-mongoose.connect(`mongodb+srv://${process.env.MONGOOSE_USER}:${process.env.MONGOOSE_PASSWORD}@cluster0.qrdg3nu.mongodb.net/${process.env.DATABASE_NAME}?retryWrites=true&w=majority`)
+mongoose.connect(process.env.MONGOOSE_DATABASE_URL)
 .then(() => {
     server.listen(PORT, () => {
         console.log(`Example app listening on http://localhost:${PORT}`)
