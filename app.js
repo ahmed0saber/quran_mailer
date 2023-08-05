@@ -106,6 +106,7 @@ const sendContactEmail = (name, email, message) => {
 const addNewSubscriber = (email) => {
     const currentUser = {
         email: removeHtmlTags(email),
+        isValid: true,
     }
 
     const subscriber = new Subscriber(currentUser)
@@ -123,7 +124,7 @@ const removeHtmlTags = (str) => {
 }
 
 const sendMailsToSubscribers = () => {
-    Subscriber.find()
+    Subscriber.find({ isValid: true })
         .then((subscribers) => {
             sendCronJobEmails(subscribers)
         })
@@ -145,6 +146,16 @@ const getRandomVerse = () => {
     const randomVerse = verses[Math.floor(Math.random() * verses.length)]
 
     return randomVerse
+}
+
+const updateSubscriberValidity = (email, isValid) => {
+    Subscriber.findOneAndUpdate({ email: email }, { isValid: isValid })
+        .then((result) => {
+            console.log(`Subscriber ${email} validity updated successfully to false:`, result)
+        })
+        .catch((err) => {
+            console.log(`Error while updating subscriber ${email}:`, err)
+        })
 }
 
 const sendVerseToSubscriber = (email, verse) => {
@@ -178,9 +189,11 @@ const sendVerseToSubscriber = (email, verse) => {
     }
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
-            console.log(error)
+            if (error.responseCode === undefined) {
+                updateSubscriberValidity(email, false)
+            }
         } else {
-            console.log('Email sent: ' + info.response)
+            console.log(`Email sent to ${email}: ` + info.response)
         }
     })
 }
