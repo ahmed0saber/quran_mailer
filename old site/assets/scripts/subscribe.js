@@ -2,12 +2,23 @@ const emailField = document.querySelector(".js-email-input")
 const subscribeBtn = document.querySelector(".subscribe-btn")
 const EMAIL_REGEX_PATTERN = /^[a-z]\w{2,}@\w{2,}\.\w{2,}$/
 
+// Function to disable buttons
+function disableButtons() {
+    subscribeBtn.disabled = true;
+}
+
+// Function to enable buttons
+function enableButtons() {
+    subscribeBtn.disabled = false;
+}
+
 const submitSubscriptionForm = () => {
     const isValid = isEmailFieldValid()
     if(!isValid){
         return
     }
 
+    disableButtons();
     subscribeBtn.classList.add("is-loading")
     fetch("https://quran-mailer-api.onrender.com/subscribe/", {
         method: "POST",
@@ -25,6 +36,7 @@ const submitSubscriptionForm = () => {
     })
     .finally(() => {
         subscribeBtn.classList.remove("is-loading")
+        enableButtons();
     })
 }
 subscribeBtn.addEventListener("click", submitSubscriptionForm)
