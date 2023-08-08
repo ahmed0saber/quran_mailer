@@ -123,3 +123,6 @@ const isMsgFieldValid = () => {
 contactNameField?.addEventListener("keyup", isNameFieldValid)
 contactEmailField?.addEventListener("keyup", isContactEmailFieldValid)
 contactMsgField?.addEventListener("keyup", isMsgFieldValid)
+
+
+

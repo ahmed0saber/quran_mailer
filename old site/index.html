@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 
 <head>
     <meta charset='UTF-8'>
@@ -13,6 +13,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet">
     <link rel='stylesheet' href="./assets/styles/global.css">
     <link rel='stylesheet' href="./assets/styles/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -34,7 +37,18 @@
             </a>
         </nav>
     </header>
+
+
+
+
     <main>
+
+        <div class="elzecr">
+            <h2>هل قراءت ورد اليوم</h2>
+            <i class="fa-solid fa-check icon"></i>
+        </div>
+
+
         <section class="hero-section">
             <div class="text-container">
                 <h1>
@@ -50,6 +64,7 @@
                     <a href="./contact/" class="contact-btn">
                         تواصل معنا
                     </a>
+                    <a href="#quran" id="btn_elquran">اقرا القرءان</a>
                 </div>
             </div>
         </section>
@@ -64,7 +79,26 @@
                     href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
             </p>
         </div>
+
     </main>
+
+
+
+ <section>
+       <div class="section-content"id='quran'></div>
+
+       <div class="popup">
+         <i id="icon_popup">X</i>
+         <p>Popup Content:</p>
+         <span></span>
+       </div>
+    
+
+ </section>
+
+
+
+
     <footer>
         <p>
             تم إنشاء الموقع بواسطة
@@ -81,5 +115,7 @@
             </a>
         </p>
     </footer>
+    <script src="../public/index.js"></script>
 </body>
+
 </html>
