@@ -481,7 +481,7 @@ footer p a {
     background-color: #eee;
     box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.3);
     text-align: center;
-    border: 10px solid #eee;
+    padding: 10px;
     cursor: pointer;
 }
 
@@ -491,7 +491,6 @@ footer p a {
     left: 0;
     bottom: 0;
     right: 0;
-    text-align: center;
     background-color: white;
     z-index: 1;
     transform: translateX(100%);
@@ -572,4 +571,20 @@ footer p a {
     padding: 12px 0;
     font-size: 20px;
     line-height: 40px;
+}
+
+.quran-section-popup .popup-content .ayah-number {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 8px;
+    border: 1px solid #323232;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
 }

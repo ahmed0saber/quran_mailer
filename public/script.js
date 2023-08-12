@@ -152,7 +152,7 @@ const buildQuranSection = async () => {
             const AYAHS_OF_SORAH = JSON_SORAH_API_RESPONSE.data.ayahs;
             let sorahContent = ""
             AYAHS_OF_SORAH.forEach(ayah => {
-                sorahContent += `<span>${ayah.text}</span>`
+                sorahContent += `<span>${ayah.text}</span><span class="ayah-number">${ayah.numberInSurah}</span>`
             });
             quranSectionPopupContent.innerHTML = sorahContent;
             quranSectionPopup.classList.add("active");
