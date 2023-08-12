@@ -106,14 +106,11 @@ const sendContactEmail = (name, email, message) => {
 const addNewSubscriber = (email) => {
     const processedEmail = removeHtmlTags(email);
 
-    // Check if the email already exists in the database
     Subscriber.findOne({ email: processedEmail })
         .then((subscriber) => {
             if (subscriber) {
-                // Subscriber already exists, handle accordingly (e.g., update their details, show an error message, etc.)
                 console.log('Subscriber already exists:', subscriber);
             } else {
-                // Subscriber does not exist, add them to the database
                 const newSubscriber = new Subscriber({
                     email: processedEmail,
                     isValid: true,
