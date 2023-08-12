@@ -38,9 +38,7 @@ app.get('/success', (req, res) => {
 
 app.post('/api/contact', (req, res) => {
     const { name, email, message } = req.body
-
     console.log(`Received name: ${name}, email: ${email}, message: ${message}`)
-
     sendContactEmail(name, email, message)
 
     res.status(200).send({
@@ -50,9 +48,7 @@ app.post('/api/contact', (req, res) => {
 
 app.post('/api/subscribe', (req, res) => {
     const { email } = req.body
-
-    console.log(`Received name: email: ${email}`)
-
+    console.log(`Received email: ${email}`)
     addNewSubscriber(email)
 
     res.status(200).send({
