@@ -13,7 +13,7 @@ elzecr_icon.addEventListener('click',function(){
 })
 
 
-let api = 'http://api.alquran.cloud/v1/meta';
+let api = 'https://api.alquran.cloud/v1/meta';
 fetch(api)
   .then(response => response.json())
   .then(data => getdata(data));
@@ -35,7 +35,7 @@ function getdata(data) {
 
   cards.forEach((card, index) => {
     card.addEventListener('click', () => {
-      let apiSurah = `http://api.alquran.cloud/v1/surah/${index + 1}`;
+      let apiSurah = `https://api.alquran.cloud/v1/surah/${index + 1}`;
       fetch(apiSurah)
         .then(res => res.json())
         .then(data => {
