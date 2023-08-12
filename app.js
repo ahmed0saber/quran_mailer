@@ -38,9 +38,7 @@ app.get('/success', (req, res) => {
 
 app.post('/api/contact', (req, res) => {
     const { name, email, message } = req.body
-
     console.log(`Received name: ${name}, email: ${email}, message: ${message}`)
-
     sendContactEmail(name, email, message)
 
     res.status(200).send({
@@ -50,9 +48,7 @@ app.post('/api/contact', (req, res) => {
 
 app.post('/api/subscribe', (req, res) => {
     const { email } = req.body
-
-    console.log(`Received name: email: ${email}`)
-
+    console.log(`Received email: ${email}`)
     addNewSubscriber(email)
 
     res.status(200).send({
@@ -76,12 +72,12 @@ const Subscriber = require('./models/subscriberSchema')
 const mongoose = require('mongoose')
 mongoose.set('strictQuery', false)
 mongoose.connect(process.env.MONGOOSE_DATABASE_URL)
-.then(() => {
-    server.listen(PORT, () => {
-        console.log(`Example app listening on http://localhost:${PORT}`)
+    .then(() => {
+        server.listen(PORT, () => {
+            console.log(`Example app listening on http://localhost:${PORT}`)
+        })
     })
-})
-.catch((err) => console.log(err))
+    .catch((err) => console.log(err))
 
 const sendContactEmail = (name, email, message) => {
     const mailOptions = {
@@ -104,20 +100,31 @@ const sendContactEmail = (name, email, message) => {
 }
 
 const addNewSubscriber = (email) => {
-    const currentUser = {
-        email: removeHtmlTags(email),
-        isValid: true,
-    }
+    const processedEmail = removeHtmlTags(email);
 
-    const subscriber = new Subscriber(currentUser)
-    subscriber.save()
-        .then((result) => {
-            console.log(result)
+    Subscriber.findOne({ email: processedEmail })
+        .then((subscriber) => {
+            if (subscriber) {
+                console.log('Subscriber already exists:', subscriber);
+            } else {
+                const newSubscriber = new Subscriber({
+                    email: processedEmail,
+                    isValid: true,
+                });
+
+                newSubscriber.save()
+                    .then((result) => {
+                        console.log('New subscriber added:', result);
+                    })
+                    .catch((err) => {
+                        console.log('Error while adding new subscriber:', err);
+                    });
+            }
         })
         .catch((err) => {
-            console.log(err)
-        })
-}
+            console.log('Error while checking subscriber existence:', err);
+        });
+};
 
 const removeHtmlTags = (str) => {
     return str.replace(/<\/?\w+>/g, "")
