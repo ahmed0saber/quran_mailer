@@ -76,12 +76,12 @@ const Subscriber = require('./models/subscriberSchema')
 const mongoose = require('mongoose')
 mongoose.set('strictQuery', false)
 mongoose.connect(process.env.MONGOOSE_DATABASE_URL)
-.then(() => {
-    server.listen(PORT, () => {
-        console.log(`Example app listening on http://localhost:${PORT}`)
+    .then(() => {
+        server.listen(PORT, () => {
+            console.log(`Example app listening on http://localhost:${PORT}`)
+        })
     })
-})
-.catch((err) => console.log(err))
+    .catch((err) => console.log(err))
 
 const sendContactEmail = (name, email, message) => {
     const mailOptions = {
@@ -104,33 +104,33 @@ const sendContactEmail = (name, email, message) => {
 }
 
 const addNewSubscriber = (email) => {
-  const processedEmail = removeHtmlTags(email);
+    const processedEmail = removeHtmlTags(email);
 
-  // Check if the email already exists in the database
-  Subscriber.findOne({ email: processedEmail })
-    .then((subscriber) => {
-      if (subscriber) {
-        // Subscriber already exists, handle accordingly (e.g., update their details, show an error message, etc.)
-        console.log('Subscriber already exists:', subscriber);
-      } else {
-        // Subscriber does not exist, add them to the database
-        const newSubscriber = new Subscriber({
-          email: processedEmail,
-          isValid: true,
+    // Check if the email already exists in the database
+    Subscriber.findOne({ email: processedEmail })
+        .then((subscriber) => {
+            if (subscriber) {
+                // Subscriber already exists, handle accordingly (e.g., update their details, show an error message, etc.)
+                console.log('Subscriber already exists:', subscriber);
+            } else {
+                // Subscriber does not exist, add them to the database
+                const newSubscriber = new Subscriber({
+                    email: processedEmail,
+                    isValid: true,
+                });
+
+                newSubscriber.save()
+                    .then((result) => {
+                        console.log('New subscriber added:', result);
+                    })
+                    .catch((err) => {
+                        console.log('Error while adding new subscriber:', err);
+                    });
+            }
+        })
+        .catch((err) => {
+            console.log('Error while checking subscriber existence:', err);
         });
-
-        newSubscriber.save()
-          .then((result) => {
-            console.log('New subscriber added:', result);
-          })
-          .catch((err) => {
-            console.log('Error while adding new subscriber:', err);
-          });
-      }
-    })
-    .catch((err) => {
-      console.log('Error while checking subscriber existence:', err);
-    });
 };
 
 const removeHtmlTags = (str) => {
