@@ -15,9 +15,18 @@ a {
     color: inherit;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
 body {
     background-color: #FEFEFE;
     direction: rtl;
+}
+
+body.quran-popup-disable-scroll {
+    overflow-y: hidden;
 }
 
 .navbar {
@@ -114,6 +123,7 @@ footer p a {
 .hero-section .text-container .btns-container {
     display: flex;
     align-items: stretch;
+    flex-wrap: wrap;
     gap: 12px;
 }
 
@@ -130,12 +140,12 @@ footer p a {
     -o-border-radius: 4px;
 }
 
-.hero-section .text-container .btns-container a.subscribe-btn {
+.hero-section .text-container .btns-container a.primry-btn {
     background-color: #FEFEFE;
     color: #323232;
 }
 
-.hero-section .text-container .btns-container a.contact-btn {
+.hero-section .text-container .btns-container a.secondary-btn {
     background-color: #FEFEFE00;
     color: #FEFEFE;
     border: 2px solid #FEFEFE;
@@ -265,6 +275,7 @@ footer p a {
         -ms-transform: translate(-50%, -50%) rotate(0deg);
         -o-transform: translate(-50%, -50%) rotate(0deg);
     }
+
     50% {
         transform: translate(-50%, -50%) rotate(180deg);
         -webkit-transform: translate(-50%, -50%) rotate(180deg);
@@ -272,6 +283,7 @@ footer p a {
         -ms-transform: translate(-50%, -50%) rotate(180deg);
         -o-transform: translate(-50%, -50%) rotate(180deg);
     }
+
     100% {
         transform: translate(-50%, -50%) rotate(360deg);
         -webkit-transform: translate(-50%, -50%) rotate(360deg);
@@ -399,6 +411,7 @@ footer p a {
         -ms-transform: translate(-50%, -50%) rotate(0deg);
         -o-transform: translate(-50%, -50%) rotate(0deg);
     }
+
     50% {
         transform: translate(-50%, -50%) rotate(180deg);
         -webkit-transform: translate(-50%, -50%) rotate(180deg);
@@ -406,6 +419,7 @@ footer p a {
         -ms-transform: translate(-50%, -50%) rotate(180deg);
         -o-transform: translate(-50%, -50%) rotate(180deg);
     }
+
     100% {
         transform: translate(-50%, -50%) rotate(360deg);
         -webkit-transform: translate(-50%, -50%) rotate(360deg);
@@ -447,4 +461,130 @@ footer p a {
     cursor: pointer;
     display: inline-block;
     margin: 8px 0 0 0;
+}
+
+/* QURAN */
+.quran-section * {
+    font-family: "IBM Plex Sans Arabic";
+}
+
+.quran-section-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+    padding: 16px;
+}
+
+.quran-section-container .sorah-card {
+    position: relative;
+    background-color: #eee;
+    box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.quran-section-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    z-index: 1;
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    overflow-y: scroll;
+    padding: 116px 16px 16px 16px;
+}
+
+.quran-section-popup.active {
+    transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    -moz-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    -o-transform: translateX(0%);
+    transition: 0.7s ease;
+    -webkit-transition: 0.7s ease;
+    -moz-transition: 0.7s ease;
+    -ms-transition: 0.7s ease;
+    -o-transition: 0.7s ease;
+}
+
+.quran-section-popup::-webkit-scrollbar {
+    width: 10px;
+    background-color: #eee;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.quran-section-popup::-webkit-scrollbar-thumb {
+    background-color: #eee;
+    background-color: green;
+    width: 10px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.quran-section-popup i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-color: #ccc;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    transition: .5s ease;
+    -webkit-transition: .5s ease;
+    -moz-transition: .5s ease;
+    -ms-transition: .5s ease;
+    -o-transition: .5s ease;
+}
+
+.quran-section-popup i svg {
+    width: 26px;
+    height: 26px;
+}
+
+.quran-section-popup i:hover {
+    background-color: black;
+    color: white;
+}
+
+.quran-section-popup .popup-content {
+    border-bottom: 1px solid green;
+    padding: 12px 0;
+    font-size: 20px;
+    line-height: 40px;
+}
+
+.quran-section-popup .popup-content .ayah-number {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 8px;
+    border: 1px solid #323232;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
 }

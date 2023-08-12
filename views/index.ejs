@@ -1,42 +1,58 @@
 <!DOCTYPE html>
 <html lang='en'>
 
-<%- include('partials/head', {title: "Home"}) %>
+<%- include('partials/head', {title: "Home" }) %>
 
-<body>
-    <%- include('partials/navbar', {active: "home"}) %>
-    <main>
-        <section class="hero-section">
-            <div class="text-container">
-                <h1>
-                    خدمة إرسال آيات قرآنية عبر البريد الالكتروني
-                </h1>
-                <p>
-                    إشترك فى خدمتنا مجانا لتصلك بعض آيات القرآن بشكل دوري عبر بريدك الالكتروني
-                </p>
-                <div class="btns-container">
-                    <a href="./subscribe/" class="subscribe-btn">
-                        اشترك الان
-                    </a>
-                    <a href="./contact/" class="contact-btn">
-                        تواصل معنا
-                    </a>
+    <body>
+        <%- include('partials/navbar', {active: "home" }) %>
+            <main>
+                <section class="hero-section">
+                    <div class="text-container">
+                        <h1>
+                            خدمة إرسال آيات قرآنية عبر البريد الالكتروني
+                        </h1>
+                        <p>
+                            إشترك فى خدمتنا مجانا لتصلك بعض آيات القرآن بشكل دوري عبر بريدك الالكتروني
+                        </p>
+                        <div class="btns-container">
+                            <a href="./subscribe/" class="primry-btn">
+                                اشترك الان
+                            </a>
+                            <a href="./contact/" class="secondary-btn">
+                                تواصل معنا
+                            </a>
+                            <a href="#quran-section" class="secondary-btn quran-btn">
+                                اقرأ القرآن
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                <div class="attribute">
+                    <p>
+                        صورة بواسطة
+                        <a target="_blank"
+                            href="https://unsplash.com/@grstocks?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">GR
+                            Stocks</a>
+                        على
+                        <a target="_blank"
+                            href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+                    </p>
                 </div>
-            </div>
-        </section>
-        <div class="attribute">
-            <p>
-                صورة بواسطة
-                <a target="_blank"
-                    href="https://unsplash.com/@grstocks?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">GR
-                    Stocks</a>
-                على
-                <a target="_blank"
-                    href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-            </p>
-        </div>
-    </main>
-    <%- include('partials/footer') %>
-</body>
+                <section class="quran-section" id="quran-section">
+                    <div class="quran-section-container"></div>
+                    <div class="quran-section-popup">
+                        <i class="close-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                class="w-5 h-5">
+                                <path
+                                    d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                            </svg>
+                        </i>
+                        <div class="popup-content"></div>
+                    </div>
+                </section>
+            </main>
+            <%- include('partials/footer') %>
+    </body>
 
 </html>
