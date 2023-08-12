@@ -125,7 +125,7 @@ contactEmailField?.addEventListener("keyup", isContactEmailFieldValid)
 contactMsgField?.addEventListener("keyup", isMsgFieldValid)
 
 // QURAN
-const quranSection = document.querySelector(".quran-section");
+const quranSection = document.querySelector(".quran-section-container");
 const quranSectionPopup = document.querySelector(".quran-section-popup");
 const quranPopupCloseIcon = document.querySelector(".quran-section-popup .close-icon");
 const quranSectionPopupContent = document.querySelector(".quran-section-popup .popup-content");
