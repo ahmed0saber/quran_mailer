@@ -53,6 +53,6 @@ This project welcomes contributions from the community. Here are several ways yo
 6.  Create a pull request (PR) to the original repository.
     
 
-For a more detailed guide on contributing to open source projects, you can refer to this [Contributing to Open Source Projects (in Arabic](https://youtube.com/playlist?list=PLNknCqb-phEjNHT607vp-4e4o3wgK9SoN).
+For a more detailed guide on contributing to open source projects, you can refer to this [Contributing to Open Source Projects (in Arabic)](https://youtube.com/playlist?list=PLNknCqb-phEjNHT607vp-4e4o3wgK9SoN).
 
 Your contributions are greatly appreciated, and together, we can enhance Quran Mailer for the community.
