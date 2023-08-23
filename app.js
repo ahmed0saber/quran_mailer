@@ -200,6 +200,32 @@ const sendVerseToSubscribersInQueue = (verse) => {
                         ${verse.content}
                     </p>
                 </div>
+                ${
+                    verse.tafseer ?
+                    `<div>
+                        <h2
+                            style="color:#323232;
+                            width:fit-content;
+                            border-bottom:2px solid #323232;"
+                        >
+                            تفسير الآية
+                        </h2>
+                        <p
+                            style="color:#323232;
+                            font-size:18px;
+                            margin:0;"
+                        >
+                            ${verse.tafseer.content}
+                        </p>
+                        <a
+                            style="display: inline-block;
+                            margin-top: 12px;"
+                            href=${verse.tafseer.source}>
+                            مصدر التفسير
+                        </a>
+                    </div>`
+                    : ""
+                }
             </div>
         `
     }
