@@ -154,7 +154,7 @@ const sendCronJobEmails = (subscribers) => {
 const getRandomVerse = () => {
     const data = require('./data')
     const verses = data.verses
-    const randomVerse = verses[Math.floor(Math.random() * verses.length)]
+    const randomVerse = verses[Math.floor((Math.random() * verses.length))]
 
     return randomVerse
 }
