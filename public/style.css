@@ -23,6 +23,13 @@ html {
 body {
     background-color: #FEFEFE;
     direction: rtl;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+body > * {
+    width: 100%;
 }
 
 body.quran-popup-disable-scroll {
@@ -79,6 +86,10 @@ body.quran-popup-disable-scroll {
     .navbar {
         flex-direction: column;
     }
+}
+
+footer {
+    margin-top: auto;
 }
 
 footer p {
@@ -182,7 +193,6 @@ footer p a {
     max-width: 600px;
     margin: 0 auto;
     padding: 12px;
-    height: calc(100vh - 158px);
 }
 
 .subscribe-section h1 {
