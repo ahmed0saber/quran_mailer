@@ -583,6 +583,10 @@ footer p a {
     font-size: 20px;
     line-height: 40px;
 }
+.quran-section-popup .popup-content ::selection{
+    color: #FEFEFE;
+    background: green;
+}
 
 .quran-section-popup .popup-content .ayah-number {
     width: 34px;
@@ -598,9 +602,4 @@ footer p a {
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
     border-radius: 50%;
-}
-
-::selection{
-    color: #FEFEFE;
-    background: green;
 }
