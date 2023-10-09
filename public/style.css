@@ -28,7 +28,7 @@ body {
     flex-direction: column;
 }
 
-body > * {
+body>* {
     width: 100%;
 }
 
@@ -583,7 +583,8 @@ footer p a {
     font-size: 20px;
     line-height: 40px;
 }
-.quran-section-popup .popup-content ::selection{
+
+.quran-section-popup .popup-content ::selection {
     color: #FEFEFE;
     background: green;
 }
