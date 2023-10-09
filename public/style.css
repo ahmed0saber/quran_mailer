@@ -599,3 +599,8 @@ footer p a {
     -o-border-radius: 50%;
     border-radius: 50%;
 }
+
+::selection{
+    color: #FEFEFE;
+    background: green;
+}
