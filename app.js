@@ -200,9 +200,8 @@ const sendVerseToSubscribersInQueue = (verse) => {
                         ${verse.content}
                     </p>
                 </div>
-                ${
-                    verse.tafseer ?
-                    `<div>
+                ${verse.tafseer ?
+                `<div>
                         <h2
                             style="color:#323232;
                             width:fit-content;
@@ -224,8 +223,16 @@ const sendVerseToSubscribersInQueue = (verse) => {
                             مصدر التفسير
                         </a>
                     </div>`
-                    : ""
-                }
+                : ""
+            }
+                <div>
+                <p>
+                للتواصل معنا
+                <a href = "https://quran-mailer.onrender.com/contact">
+                اضغط هنا
+                </a>
+                </p>
+                </div>
             </div>
         `
     }
