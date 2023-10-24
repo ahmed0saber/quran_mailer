@@ -226,12 +226,12 @@ const sendVerseToSubscribersInQueue = (verse) => {
                 : ""
             }
                 <div>
-                <p>
-                للتواصل معنا
-                <a href = "https://quran-mailer.onrender.com/contact">
-                اضغط هنا
-                </a>
-                </p>
+                      <p>
+                         للتواصل معنا
+                           <a href = "https://quran-mailer.onrender.com/contact">
+                                اضغط هنا
+                           </a>
+                      </p>
                 </div>
             </div>
         `
