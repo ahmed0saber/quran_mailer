@@ -216,21 +216,34 @@ const sendVerseToSubscribersInQueue = (verse) => {
                     >
                         ${verse.tafseer.content}
                     </p>
-                    <a
-                        style="display: inline-block;
-                        margin-top: 12px;"
-                        href=${verse.tafseer.source}>
-                        مصدر التفسير
-                    </a>
+                    <p>
+                        يمكنك زيارة مصدر التفسير
+                        <a href=${verse.tafseer.source}>
+                            من هنا
+                        </a>
+                    </p>
                 </div>`
                 : ""
             }
                 <div>
                     <p>
                         للتواصل معنا
-                        <a href = "https://quran-mailer.onrender.com/contact">
+                        <a href="https://quran-mailer.onrender.com/contact">
                             اضغط هنا
                         </a>
+                    </p>
+                    <p>
+                        للمساهمة فى إضافة الآيات أو تطوير هذه الخدمة
+                        <a href="https://github.com/ahmed0saber/quran_mailer">
+                            اضغط هنا
+                        </a>
+                    </p>
+                    <p>
+                        لا تنسى مشاركة
+                        <a href="https://quran-mailer.onrender.com/subscribe">
+                            هذا الرابط
+                        </a>
+                        مع أحبائك ليتمكنوا من الاشتراك فى هذه الخدمة
                     </p>
                 </div>
             </div>
