@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import clientPromise from "@/lib/mongodb"
 
-export const maxDuration = 60
+export const maxDuration = 10
 
 const nodemailer = require('nodemailer')
 
