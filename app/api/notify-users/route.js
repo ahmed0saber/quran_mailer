@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server"
 import clientPromise from "@/lib/mongodb"
-const nodemailer = require('nodemailer')
 
-export const runtime = 'edge'
+export const maxDuration = 60
+
+const nodemailer = require('nodemailer')
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -12,20 +13,12 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-export async function POST(req) {
-    const jsonReq = await req.json()
-    const { key } = jsonReq
-
-    if (key !== process.env.CRON_JOB_KEY) {
-        return new NextResponse(
-            JSON.stringify({
-                success: false
-            }),
-            {
-                status: 200,
-                headers: { "Content-Type": "application/json" },
-            }
-        )
+export async function GET(request) {
+    const authHeader = request.headers.get('authorization')
+    if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+        return new Response('Unauthorized', {
+            status: 401,
+        })
     }
 
     const client = await clientPromise
