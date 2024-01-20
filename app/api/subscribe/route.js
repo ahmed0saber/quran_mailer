@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server"
 import clientPromise from "@/lib/mongodb"
 
+export const runtime = 'edge'
+
 export async function POST(req) {
     const jsonReq = await req.json()
     const { email } = jsonReq

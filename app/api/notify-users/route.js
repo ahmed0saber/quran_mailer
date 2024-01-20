@@ -2,6 +2,8 @@ import { NextResponse } from "next/server"
 import clientPromise from "@/lib/mongodb"
 const nodemailer = require('nodemailer')
 
+export const runtime = 'edge'
+
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
