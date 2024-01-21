@@ -98,6 +98,33 @@ footer p a {
   padding: 0px 4px;
 }
 
+.component-loader {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.component-loader div {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #0000;
+  border-top: 4px solid #323232;
+  border-bottom: 4px solid #323232;
+  border-radius: 50%;
+  animation: loading-spinner 1s infinite 0s linear;
+}
+
+@keyframes loading-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* HOME */
 .hero-section {
   width: 100%;

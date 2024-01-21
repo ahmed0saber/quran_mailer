@@ -1,5 +1,14 @@
 import Link from "next/link";
-import QuranSection from "./components/QuranSection";
+import dynamic from 'next/dynamic';
+
+const QuranSection = dynamic(() => import('./components/QuranSection'), {
+  loading: () => (
+    <div className="component-loader">
+      <div></div>
+    </div>
+  ),
+  ssr: false
+});
 
 export default function Home() {
   return (
