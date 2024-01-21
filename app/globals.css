@@ -102,7 +102,7 @@ footer p a {
 .hero-section {
   width: 100%;
   min-height: calc(100vh - 61px);
-  background: #323232C2 url("../public/hero-section.jpg") center center no-repeat;
+  background: #323232C2 url("../public/hero-section.webp") center center no-repeat;
   background-size: cover;
   background-blend-mode: overlay;
   display: flex;
