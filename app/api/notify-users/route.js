@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import clientPromise from "@/lib/mongodb"
 import verses from "@/data/verses"
+import { formatDate } from "@/utils/date"
 
 export const maxDuration = 10
 
@@ -15,6 +16,8 @@ const transporter = nodemailer.createTransport({
 })
 
 export async function GET(request) {
+    const processStartTime = process.hrtime.bigint()
+
     const authHeader = request.headers.get('authorization')
     if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
         return new Response('Unauthorized', {
@@ -31,6 +34,16 @@ export async function GET(request) {
         .toArray()
 
     await sendCronJobEmails(subscribers)
+
+    const processEndTime = process.hrtime.bigint()
+    const processTimeTaken = (processEndTime - processStartTime) / BigInt(1e6)
+    console.log({
+        "date": formatDate(new Date()),
+        "level": "INFO",
+        "message": "All users have been notified successfully",
+        "timeTaken": `${processTimeTaken}ms`,
+        "service": "NotifyUsers"
+    })
 
     return new NextResponse(
         JSON.stringify({
