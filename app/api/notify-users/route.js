@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import clientPromise from "@/lib/mongodb"
+import verses from "@/data/verses"
 
 export const maxDuration = 10
 
@@ -26,7 +27,7 @@ export async function GET(request) {
 
     const subscribers = await db
         .collection(process.env.SUBSCRIBERS_MODEL)
-        .find({ isValid: true })
+        .find({ isValid: true }, { projection: { _id: 0, email: 1 } })
         .toArray()
 
     await sendCronJobEmails(subscribers)
@@ -42,34 +43,18 @@ export async function GET(request) {
     )
 }
 
-import verses from "@/data/verses"
-import JobScheduler from "@/utils/job-scheduler"
-
-const mailsScheduler = new JobScheduler()
-
-const sendCronJobEmails = async (subscribers) => {
-    const currentVerse = getRandomVerse()
-    subscribers.forEach(subscriber => {
-        mailsScheduler.enqueue(subscriber.email)
-    })
-
-    await sendVerseToSubscribersInQueue(currentVerse)
-}
-
 const getRandomVerse = () => {
     const randomVerse = verses[Math.floor((Math.random() * verses.length))]
     return randomVerse
 }
 
-const sendVerseToSubscribersInQueue = async (verse) => {
-    if (mailsScheduler.size() <= 0) {
-        return
-    }
+const sendCronJobEmails = async (subscribers) => {
+    const verse = getRandomVerse()
+    const stringifiedEmails = subscribers.map(subscriber => subscriber.email).join(", ")
 
-    const processedEmail = mailsScheduler.dequeue()
     const mailOptions = {
         from: process.env.GMAIL_USER,
-        to: processedEmail,
+        to: stringifiedEmails,
         subject: "Quran Mailer",
         html: `
             <div style="background-color:#F7F7F7;direction:rtl;text-align:right;padding:12px">
@@ -142,16 +127,13 @@ const sendVerseToSubscribersInQueue = async (verse) => {
         `
     }
 
-    const transporterResult = await new Promise((resolve, reject) => {
+    await new Promise((resolve, reject) => {
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
                 reject(error);
             } else {
-                resolve(`Email sent to ${processedEmail}: ` + info.response);
+                resolve(`Email sent to ${stringifiedEmails}: ` + info.response);
             }
         });
     });
-    console.log(transporterResult)
-
-    await sendVerseToSubscribersInQueue(verse)
 }
