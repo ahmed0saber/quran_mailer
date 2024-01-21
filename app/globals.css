@@ -79,7 +79,7 @@ body.quran-popup-disable-scroll {
 
 @media (max-width: 425px) {
   .navbar {
-      flex-direction: column;
+    flex-direction: column;
   }
 }
 
@@ -174,13 +174,13 @@ footer p a {
 
 @media (max-width: 768px) {
   .hero-section .text-container {
-      width: 100%;
+    width: 100%;
   }
 }
 
 @media (max-width: 425px) {
   .hero-section {
-      min-height: calc(100vh - 92px);
+    min-height: calc(100vh - 92px);
   }
 }
 
@@ -277,27 +277,27 @@ footer p a {
 
 @keyframes loading {
   0% {
-      -webkit-transform: translate(-50%, -50%) rotate(0deg);
-      -moz-transform: translate(-50%, -50%) rotate(0deg);
-      -ms-transform: translate(-50%, -50%) rotate(0deg);
-      -o-transform: translate(-50%, -50%) rotate(0deg);
-      transform: translate(-50%, -50%) rotate(0deg);
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+    -moz-transform: translate(-50%, -50%) rotate(0deg);
+    -ms-transform: translate(-50%, -50%) rotate(0deg);
+    -o-transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
 
   50% {
-      -webkit-transform: translate(-50%, -50%) rotate(180deg);
-      -moz-transform: translate(-50%, -50%) rotate(180deg);
-      -ms-transform: translate(-50%, -50%) rotate(180deg);
-      -o-transform: translate(-50%, -50%) rotate(180deg);
-      transform: translate(-50%, -50%) rotate(180deg);
+    -webkit-transform: translate(-50%, -50%) rotate(180deg);
+    -moz-transform: translate(-50%, -50%) rotate(180deg);
+    -ms-transform: translate(-50%, -50%) rotate(180deg);
+    -o-transform: translate(-50%, -50%) rotate(180deg);
+    transform: translate(-50%, -50%) rotate(180deg);
   }
 
   100% {
-      -webkit-transform: translate(-50%, -50%) rotate(360deg);
-      -moz-transform: translate(-50%, -50%) rotate(360deg);
-      -ms-transform: translate(-50%, -50%) rotate(360deg);
-      -o-transform: translate(-50%, -50%) rotate(360deg);
-      transform: translate(-50%, -50%) rotate(360deg);
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+    -moz-transform: translate(-50%, -50%) rotate(360deg);
+    -ms-transform: translate(-50%, -50%) rotate(360deg);
+    -o-transform: translate(-50%, -50%) rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
@@ -413,27 +413,27 @@ footer p a {
 
 @keyframes loading {
   0% {
-      -webkit-transform: translate(-50%, -50%) rotate(0deg);
-      -moz-transform: translate(-50%, -50%) rotate(0deg);
-      -ms-transform: translate(-50%, -50%) rotate(0deg);
-      -o-transform: translate(-50%, -50%) rotate(0deg);
-      transform: translate(-50%, -50%) rotate(0deg);
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+    -moz-transform: translate(-50%, -50%) rotate(0deg);
+    -ms-transform: translate(-50%, -50%) rotate(0deg);
+    -o-transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
 
   50% {
-      -webkit-transform: translate(-50%, -50%) rotate(180deg);
-      -moz-transform: translate(-50%, -50%) rotate(180deg);
-      -ms-transform: translate(-50%, -50%) rotate(180deg);
-      -o-transform: translate(-50%, -50%) rotate(180deg);
-      transform: translate(-50%, -50%) rotate(180deg);
+    -webkit-transform: translate(-50%, -50%) rotate(180deg);
+    -moz-transform: translate(-50%, -50%) rotate(180deg);
+    -ms-transform: translate(-50%, -50%) rotate(180deg);
+    -o-transform: translate(-50%, -50%) rotate(180deg);
+    transform: translate(-50%, -50%) rotate(180deg);
   }
 
   100% {
-      -webkit-transform: translate(-50%, -50%) rotate(360deg);
-      -moz-transform: translate(-50%, -50%) rotate(360deg);
-      -ms-transform: translate(-50%, -50%) rotate(360deg);
-      -o-transform: translate(-50%, -50%) rotate(360deg);
-      transform: translate(-50%, -50%) rotate(360deg);
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+    -moz-transform: translate(-50%, -50%) rotate(360deg);
+    -ms-transform: translate(-50%, -50%) rotate(360deg);
+    -o-transform: translate(-50%, -50%) rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
@@ -484,7 +484,7 @@ footer p a {
   padding: 16px;
 }
 
-.quran-section-container .sorah-card {
+.quran-section-container .surah-card {
   position: relative;
   background-color: #eee;
   box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.3);

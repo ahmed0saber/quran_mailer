@@ -1,4 +1,5 @@
 import Link from "next/link";
+import QuranSection from "./components/QuranSection";
 
 export default function Home() {
   return (
@@ -18,9 +19,6 @@ export default function Home() {
             <Link href="./contact/" className="secondary-btn">
               تواصل معنا
             </Link>
-            {/* <a href="#quran-section" className="secondary-btn quran-btn">
-              اقرأ القرآن
-            </a> */}
           </div>
         </div>
       </section>
@@ -35,6 +33,7 @@ export default function Home() {
             href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
         </p>
       </div>
+      <QuranSection />
     </main>
   )
 }
