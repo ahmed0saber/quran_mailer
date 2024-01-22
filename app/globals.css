@@ -37,10 +37,12 @@ body.quran-popup-disable-scroll {
 
 .navbar {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  flex-wrap: wrap;
+  padding: 12px;
+  height: 68px;
   position: sticky;
   top: 0;
   left: 0;
@@ -48,7 +50,6 @@ body.quran-popup-disable-scroll {
   z-index: 99;
   background-color: #FEFEFE;
   box-shadow: 0px 0px 2px 2px #32323212;
-  padding: 12px;
 }
 
 .navbar h3 {
@@ -121,5 +122,11 @@ footer p a {
 
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 425px) {
+  .navbar {
+      min-height: 100px;
   }
 }
