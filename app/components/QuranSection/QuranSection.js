@@ -29,8 +29,13 @@ export default function QuranSection() {
             const response = await fetch(SURAH_API_ENDPOINT);
             const jsonResponse = await response.json();
             const ayahs = jsonResponse.data.ayahs;
+
+            if (index > 0) {
+                ayahs[0].text = ayahs[0].text.replace("بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ ", "")
+            }
+
             const surahContent = ayahs.map(ayah =>
-                `<span>${ayah.text}</span><span class="ayah-number">${ayah.numberInSurah}</span>`
+                `<span>${ayah.text.replace("\n", "")}</span><span class="ayah-number">${ayah.numberInSurah}</span>`
             ).join('');
 
             document.body.classList.add("quran-popup-disable-scroll");
