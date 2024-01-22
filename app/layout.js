@@ -1,6 +1,12 @@
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import './globals.css'
+import localFont from 'next/font/local'
+
+const Cairo_Arabic_Font = localFont({
+  src: './fonts/Cairo-Regular.ttf',
+  display: 'swap',
+})
 
 export const metadata = {
   title: 'Quran Mailer',
@@ -9,13 +15,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-        <link href="https://fonts.googleapis.com/css2?family=Cairo&family=IBM+Plex+Sans+Arabic&display=swap" rel="stylesheet" />
-      </head>
-      <body>
+    <html lang="ar">
+      <body className={Cairo_Arabic_Font.className}>
         <Navbar />
         {children}
         <Footer />

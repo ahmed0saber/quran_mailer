@@ -6,7 +6,6 @@
   position: relative;
   border: none;
   outline: none;
-  font-family: 'Cairo', cursive;
 }
 
 a {
@@ -499,8 +498,9 @@ footer p a {
 }
 
 /* QURAN */
+.quran-section,
 .quran-section * {
-  font-family: "IBM Plex Sans Arabic";
+  font-family: 'Amiri', serif;
 }
 
 .quran-section-container {
