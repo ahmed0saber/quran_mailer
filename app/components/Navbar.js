@@ -8,22 +8,24 @@ export default function Navbar() {
 
     return (
         <header className="navbar">
-            <h3>
-                <Link href="/">
-                    ذكرنى بالقرآن
-                </Link>
-            </h3>
-            <nav>
-                <Link href="/" className={pathname === "/" ? "active" : ""}>
-                    الرئيسية
-                </Link>
-                <Link href="/contact" className={pathname === "/contact" ? "active" : ""}>
-                    تواصل معنا
-                </Link>
-                <Link href="/subscribe" className={pathname === "/subscribe" ? "active" : ""}>
-                    اشترك الان
-                </Link>
-            </nav >
-        </header >
+            <div className="container">
+                <h3>
+                    <Link href="/">
+                        ذكرنى بالقرآن
+                    </Link>
+                </h3>
+                <nav>
+                    <Link href="/" className={pathname === "/" ? "active" : ""}>
+                        الرئيسية
+                    </Link>
+                    <Link href="/contact" className={pathname === "/contact" ? "active" : ""}>
+                        تواصل معنا
+                    </Link>
+                    <Link href="/subscribe" className={pathname === "/subscribe" ? "active" : ""}>
+                        اشترك الان
+                    </Link>
+                </nav>
+            </div>
+        </header>
     )
 }

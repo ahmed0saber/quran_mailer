@@ -8,32 +8,26 @@
     align-items: center;
 }
 
-.hero-section .text-container {
-    padding: 12px;
-    width: calc(100% - 120px);
-    margin: 0 auto;
-}
-
-.hero-section .text-container h1 {
+.hero-section h1 {
     color: #FEFEFE;
     font-size: calc(1vw + 24px);
 }
 
-.hero-section .text-container p {
+.hero-section p {
     color: #FEFEFE;
     font-size: calc(0.5vw + 16px);
     opacity: 0.9;
     margin: 4px 0 16px 0;
 }
 
-.hero-section .text-container .btns-container {
+.hero-section .btns-container {
     display: flex;
     align-items: stretch;
     flex-wrap: wrap;
     gap: 12px;
 }
 
-.hero-section .text-container .btns-container a {
+.hero-section .btns-container a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,19 +40,15 @@
     border-radius: 4px;
 }
 
-.hero-section .text-container .btns-container a.primry-btn {
+.hero-section .btns-container a.primry-btn {
     background-color: #FEFEFE;
     color: #323232;
 }
 
-.hero-section .text-container .btns-container a.secondary-btn {
+.hero-section .btns-container a.secondary-btn {
     background-color: #FEFEFE00;
     color: #FEFEFE;
     border: 2px solid #FEFEFE;
-}
-
-.attribute {
-    padding: 4px 12px;
 }
 
 .attribute p {
@@ -69,12 +59,6 @@
 .attribute p a {
     color: #007bff;
     padding: 0px 4px;
-}
-
-@media (max-width: 768px) {
-    .hero-section .text-container {
-        width: 100%;
-    }
 }
 
 @media (max-width: 425px) {

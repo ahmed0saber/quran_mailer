@@ -43,7 +43,7 @@ export default function Contact() {
 
     return (
         <main>
-            <section className="contact-us-section">
+            <section className="contact-us-section container">
                 <h1>
                     تواصل معنا
                 </h1>

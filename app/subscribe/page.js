@@ -37,7 +37,7 @@ export default function Subscribe() {
 
     return (
         <main>
-            <section className="subscribe-section">
+            <section className="subscribe-section container">
                 <h1>
                     اشترك الان
                 </h1>

@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main>
       <section className="hero-section">
-        <div className="text-container">
+        <div className="container">
           <h1>
             خدمة إرسال آيات قرآنية عبر البريد الالكتروني
           </h1>
@@ -32,7 +32,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div className="attribute">
+      <div className="attribute container">
         <p>
           صورة بواسطة
           <a target="_blank"

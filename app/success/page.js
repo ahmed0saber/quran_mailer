@@ -4,7 +4,7 @@ import './style.css';
 export default function Success() {
     return (
         <main>
-            <section className="success-section">
+            <section className="success-section container">
                 <h1>
                     تمت العملية بنجاح
                 </h1>

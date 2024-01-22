@@ -56,7 +56,7 @@ export default function QuranSection() {
     }, [])
 
     return (
-        <section className="quran-section" id="quran-section">
+        <section className="quran-section container">
             <div className="quran-section-container">
                 {surahs.map((surah, index) => (
                     <div key={surah.number} className="surah-card" onClick={() => handleSurahClick(index)}>
