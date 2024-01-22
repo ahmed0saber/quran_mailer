@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation"
 import { useRef } from "react"
+import './style.css';
 
 export default function Subscribe() {
     const emailRef = useRef()
