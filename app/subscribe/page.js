@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation"
 import { useRef } from "react"
-import './style.css';
 
 export default function Subscribe() {
     const emailRef = useRef()
@@ -38,22 +37,23 @@ export default function Subscribe() {
     return (
         <main>
             <section className="subscribe-section container">
-                <h1>
+                <h1 className='heading-primary'>
                     اشترك الان
                 </h1>
-                <p>
+                <p className='text-primary'>
                     بمجرد الاشتراك فى خدمتنا المجانية سوف تتلقى رسالة تحمل آية من القرآن يوميا عبر بريدك الالكترونى
                 </p>
-                <form onSubmit={handleSubscribeFormSubmit}>
+                <form className="form" onSubmit={handleSubscribeFormSubmit}>
                     <div className="input-container js-input-container">
                         <input
                             type="email"
                             placeholder="ادخل البريد الالكترونى"
                             ref={emailRef}
+                            className="form-input"
                             required
                         />
                     </div>
-                    <button className="subscribe-btn" ref={submitBtnRef}>
+                    <button className='btn-dark' ref={submitBtnRef}>
                         اشتراك
                     </button>
                 </form>

@@ -27,7 +27,7 @@
     gap: 12px;
 }
 
-.hero-section .btns-container a {
+.hero-section a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,12 +40,12 @@
     border-radius: 4px;
 }
 
-.hero-section .btns-container a.primry-btn {
+.hero-section .btn-primary {
     background-color: #FEFEFE;
     color: #323232;
 }
 
-.hero-section .btns-container a.secondary-btn {
+.hero-section .btn-secondary {
     background-color: #FEFEFE00;
     color: #FEFEFE;
     border: 2px solid #FEFEFE;

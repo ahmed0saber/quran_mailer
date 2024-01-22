@@ -1,17 +1,16 @@
 import Link from 'next/link'
-import './style.css';
 
 export default function Success() {
     return (
         <main>
-            <section className="success-section container">
-                <h1>
+            <section className="container">
+                <h1 className='heading-primary'>
                     تمت العملية بنجاح
                 </h1>
-                <p>
+                <p className='text-primary'>
                     يسعدنا استخدامك لموقعنا الالكترونى و نتمنى لك التوفيق الدائم
                 </p>
-                <Link href="/">
+                <Link href="/" className='btn-dark mt-8'>
                     العودة إلى الصفحة الرئيسية
                 </Link>
             </section>

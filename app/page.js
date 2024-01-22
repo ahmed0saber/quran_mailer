@@ -23,10 +23,10 @@ export default function Home() {
             إشترك فى خدمتنا مجانا لتصلك بعض آيات القرآن بشكل دوري عبر بريدك الالكتروني
           </p>
           <div className="btns-container">
-            <Link href="./subscribe/" className="primry-btn">
+            <Link href="./subscribe/" className="btn-primary">
               اشترك الان
             </Link>
-            <Link href="./contact/" className="secondary-btn">
+            <Link href="./contact/" className="btn-secondary">
               تواصل معنا
             </Link>
           </div>

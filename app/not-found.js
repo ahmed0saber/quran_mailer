@@ -1,15 +1,13 @@
 import Link from "next/link";
 
-export const runtime = "edge";
-
 export default function NotFound() {
   return (
     <main>
-        <section className="success-section">
-            <h1>
+        <section className="container">
+            <h1 className="heading-primary">
                 عذرا لم نتمكن من العثور على هذه الصفحة
             </h1>
-            <Link href="/">
+            <Link href="/" className="btn-dark mt-8">
                 العودة إلى الصفحة الرئيسية
             </Link>
         </section>

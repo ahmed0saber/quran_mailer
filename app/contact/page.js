@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation'
 import { useRef } from "react"
-import './style.css';
 
 export default function Contact() {
     const usernameRef = useRef()
@@ -44,18 +43,19 @@ export default function Contact() {
     return (
         <main>
             <section className="contact-us-section container">
-                <h1>
+                <h1 className='heading-primary'>
                     تواصل معنا
                 </h1>
-                <p>
+                <p className='text-primary'>
                     يسرنا تواصلكم معنا من خلال النموذج التالي عند الرغبة فى اخبارنا اى شئ يخص هذا الموقع الالكترونى
                 </p>
-                <form onSubmit={handleContactFormSubmit}>
+                <form className="form" onSubmit={handleContactFormSubmit}>
                     <div className="input-container">
                         <input
                             type="text"
                             placeholder="ادخل الاسم بالكامل"
                             ref={usernameRef}
+                            className='form-input'
                             required
                         />
                     </div>
@@ -64,6 +64,7 @@ export default function Contact() {
                             type="email"
                             placeholder="ادخل البريد الالكترونى"
                             ref={emailRef}
+                            className='form-input'
                             required
                         />
                     </div>
@@ -71,10 +72,11 @@ export default function Contact() {
                         <textarea
                             placeholder="ما الذى ترغب فى اخبارنا به؟"
                             ref={messageRef}
+                            className='form-input form-textarea'
                             required
                         ></textarea>
                     </div>
-                    <button className="contact-btn" ref={submitBtnRef}>
+                    <button className="btn-dark" ref={submitBtnRef}>
                         ارسال
                     </button>
                 </form>
