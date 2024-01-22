@@ -1,6 +1,6 @@
 .hero-section {
     width: 100%;
-    min-height: calc(100vh - 61px);
+    min-height: calc(100dvh - 61px);
     background: #323232C2 url("../public/hero-section.webp") center center no-repeat;
     background-size: cover;
     background-blend-mode: overlay;
@@ -79,6 +79,6 @@
 
 @media (max-width: 425px) {
     .hero-section {
-        min-height: calc(100vh - 92px);
+        min-height: calc(100dvh - 97px);
     }
 }
