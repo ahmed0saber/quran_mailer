@@ -1,8 +1,10 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { useRef } from 'react'
 
 export default function page() {
+    const router = useRouter()
     const usernameRef = useRef()
     const passwordRef = useRef()
 
@@ -24,6 +26,7 @@ export default function page() {
                     username,
                     password
                 }))
+                router.push("/admin/logs")
             } else {
                 if (res.status === 401) {
                     console.error("Authentication failed: Invalid username or password")
@@ -71,6 +74,5 @@ export default function page() {
                 </form>
             </section>
         </main>
-        
     )
 }
