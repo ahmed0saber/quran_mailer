@@ -26,24 +26,28 @@ export async function GET(request) {
     }
 
     const client = await clientPromise
-    const db = client.db("myData")
-
+    const db = client.db(process.env.DATABASE_NAME)
     const subscribers = await db
         .collection(process.env.SUBSCRIBERS_MODEL)
         .find({ isValid: true }, { projection: { _id: 0, email: 1 } })
         .toArray()
 
+    const getSubscribersTimeTaken = (process.hrtime.bigint() - processStartTime) / BigInt(1e6)
     await sendCronJobEmails(subscribers)
+    const sendEmailsTimeTaken = ((process.hrtime.bigint() - processStartTime) / BigInt(1e6)) - getSubscribersTimeTaken
 
-    const processEndTime = process.hrtime.bigint()
-    const processTimeTaken = (processEndTime - processStartTime) / BigInt(1e6)
-    console.log({
-        "date": formatDate(new Date()),
-        "level": "INFO",
-        "message": "All users have been notified successfully",
-        "timeTaken": `${processTimeTaken}ms`,
-        "service": "NotifyUsers"
-    })
+    const totalTimeTaken = (process.hrtime.bigint() - processStartTime) / BigInt(1e6)
+    await db
+        .collection(process.env.LOGGING_MODEL)
+        .insertOne({
+            "date": formatDate(new Date()),
+            "level": "INFO",
+            "message": "All users have been notified successfully",
+            "getSubscribersTimeTaken": `${getSubscribersTimeTaken}ms`,
+            "sendEmailsTimeTaken": `${sendEmailsTimeTaken}ms`,
+            "totalTimeTaken": `${totalTimeTaken}ms`,
+            "service": "NotifyUsers"
+        })
 
     return new NextResponse(
         JSON.stringify({

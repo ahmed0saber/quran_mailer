@@ -6,7 +6,7 @@ export async function POST(req) {
     const { email } = jsonReq
 
     const client = await clientPromise
-    const db = client.db("myData")
+    const db = client.db(process.env.DATABASE_NAME)
 
     const subscriber = await db
         .collection(process.env.SUBSCRIBERS_MODEL)
