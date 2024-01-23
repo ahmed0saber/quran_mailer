@@ -30,7 +30,7 @@ export default function Subscribe() {
             .finally(() => {
                 submitBtnRef.current.classList.remove("is-loading")
                 emailRef.current.value = ""
-                router.push("/success")
+                router.push('/success?message=يرجي فحص البريد الالكتروني خاصتك للتحقق من صلاحيته و اتمام عملية الاشتراك فى هذه الخدمة')
             })
     }
 
