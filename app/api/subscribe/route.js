@@ -1,5 +1,16 @@
 import { NextResponse } from "next/server"
 import clientPromise from "@/lib/mongodb"
+import { randomBytes } from 'crypto'
+
+const nodemailer = require('nodemailer')
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASSWORD
+    }
+})
 
 export async function POST(req) {
     const jsonReq = await req.json()
@@ -14,30 +25,53 @@ export async function POST(req) {
 
     if (subscriber) {
         return new NextResponse(
-            JSON.stringify({
-                success: false
-            }),
-            {
-                status: 200,
-                headers: { "Content-Type": "application/json" },
-            }
+            JSON.stringify({ success: false, message: "Email is already subscribed or has recieved verification link." }),
+            { status: 200, headers: { "Content-Type": "application/json" } }
         )
     }
 
-    await db
-        .collection(process.env.SUBSCRIBERS_MODEL)
-        .insertOne({
-            email,
-            isValid: true
-        })
+    const verificationToken = randomBytes(16).toString('hex')
+    const host = req.headers.host || 'localhost:3000'
+    const protocol = req.headers['x-forwarded-proto'] || 'http'
+
+    const verificationLink = `${protocol}://${host}/api/verify-email?token=${verificationToken}`
+    await sendVerificationEmail(email, verificationLink)
+
+    await db.collection(process.env.SUBSCRIBERS_MODEL).insertOne({
+        email,
+        verificationToken,
+        isValid: false
+    })
 
     return new NextResponse(
-        JSON.stringify({
-            success: true
-        }),
-        {
-            status: 200,
-            headers: { "Content-Type": "application/json" },
-        }
+        JSON.stringify({ success: true, message: "Verification email sent." }),
+        { status: 200, headers: { "Content-Type": "application/json" } }
     )
+}
+
+const sendVerificationEmail = async (email, verificationLink) => {
+    const mailOptions = {
+        from: process.env.GMAIL_USER,
+        to: email,
+        subject: "Email Verification",
+        html: `
+            <h1>Welcome to Quran Mailer!</h1>
+            <p>Hi there,</p>
+            <p>To get started, please verify your email address by clicking the button below:</p>
+            <a href="${verificationLink}" class="button">Verify Email</a>
+            <p>If the button doesn't work, please copy and paste the following link into your browser:</p>
+            <p><a href="${verificationLink}">${verificationLink}</a></p>
+            <p>If you did not sign up for Quran Mailer, you can safely ignore this email.</p>
+        `
+    }
+
+    return new Promise((resolve, reject) => {
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                reject(error);
+            } else {
+                resolve('Email sent: ' + info.response);
+            }
+        });
+    });
 }
