@@ -47,6 +47,7 @@ export default function Subscribe() {
                     <div className="input-container js-input-container">
                         <input
                             type="email"
+                            name="email"
                             placeholder="ادخل البريد الالكترونى"
                             ref={emailRef}
                             className="form-input"

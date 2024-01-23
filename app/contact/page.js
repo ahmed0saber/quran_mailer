@@ -53,6 +53,7 @@ export default function Contact() {
                     <div className="input-container">
                         <input
                             type="text"
+                            name="name"
                             placeholder="ادخل الاسم بالكامل"
                             ref={usernameRef}
                             className='form-input'
@@ -62,6 +63,7 @@ export default function Contact() {
                     <div className="input-container">
                         <input
                             type="email"
+                            name="email"
                             placeholder="ادخل البريد الالكترونى"
                             ref={emailRef}
                             className='form-input'

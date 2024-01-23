@@ -53,6 +53,7 @@ export default function page() {
                     <div className="input-container">
                         <input
                             type='text'
+                            name="name"
                             placeholder='اسم المستخدم'
                             ref={usernameRef}
                             className='form-input'
@@ -62,6 +63,7 @@ export default function page() {
                     <div className="input-container">
                         <input
                             type='password'
+                            name="password"
                             placeholder='كلمة المرور'
                             ref={passwordRef}
                             className='form-input'
