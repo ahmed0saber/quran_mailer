@@ -42,7 +42,7 @@ export default function Contact() {
 
     return (
         <main>
-            <section className="contact-us-section container">
+            <section className="container">
                 <h1 className='heading-primary'>
                     تواصل معنا
                 </h1>
