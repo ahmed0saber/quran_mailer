@@ -2,18 +2,9 @@ import { NextResponse } from "next/server"
 import clientPromise from "@/lib/mongodb"
 import verses from "@/data/verses"
 import { formatDate } from "@/utils/date"
+import mailTransporter from "@/lib/nodemailer"
 
 export const maxDuration = 10
-
-const nodemailer = require('nodemailer')
-
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASSWORD
-    }
-})
 
 export async function GET(request) {
     const processStartTime = process.hrtime.bigint()
@@ -145,7 +136,7 @@ const sendCronJobEmails = async (subscribers) => {
     }
 
     await new Promise((resolve, reject) => {
-        transporter.sendMail(mailOptions, function (error, info) {
+        mailTransporter.sendMail(mailOptions, function (error, info) {
             if (error) {
                 reject(error);
             } else {

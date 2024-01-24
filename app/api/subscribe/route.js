@@ -1,16 +1,7 @@
 import { NextResponse } from "next/server"
 import clientPromise from "@/lib/mongodb"
 import { randomBytes } from 'crypto'
-
-const nodemailer = require('nodemailer')
-
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASSWORD
-    }
-})
+import mailTransporter from "@/lib/nodemailer"
 
 export async function POST(req) {
     const jsonReq = await req.json()
@@ -66,7 +57,7 @@ const sendVerificationEmail = async (email, verificationLink) => {
     }
 
     return new Promise((resolve, reject) => {
-        transporter.sendMail(mailOptions, function (error, info) {
+        mailTransporter.sendMail(mailOptions, function (error, info) {
             if (error) {
                 reject(error);
             } else {
