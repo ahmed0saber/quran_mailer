@@ -22,10 +22,11 @@ export async function POST(req) {
     }
 
     const verificationToken = randomBytes(16).toString('hex')
-    const host = req.headers.host || 'localhost:3000'
-    const protocol = req.headers['x-forwarded-proto'] || 'http'
+    const verificationLink = generateEmailVerificationLink({
+        headers: req.headers,
+        token: verificationToken
+    })
 
-    const verificationLink = `${protocol}://${host}/api/verify-email?token=${verificationToken}`
     await sendVerificationEmail(email, verificationLink)
 
     await db.collection(process.env.SUBSCRIBERS_MODEL).insertOne({
@@ -38,6 +39,14 @@ export async function POST(req) {
         JSON.stringify({ success: true, message: "Verification email sent." }),
         { status: 200, headers: { "Content-Type": "application/json" } }
     )
+}
+
+const generateEmailVerificationLink = ({ headers, token } = {}) => {
+    const host = headers.host || 'localhost:3000'
+    const protocol = headers['x-forwarded-proto'] || 'http'
+    const verificationLink = `${protocol}://${host}/api/verify-email?token=${token}`
+
+    return verificationLink
 }
 
 const sendVerificationEmail = async (email, verificationLink) => {
