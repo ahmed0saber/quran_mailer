@@ -1,9 +1,9 @@
 import clientPromise from "@/lib/mongodb"
+import { getParamFromUrl } from "@/utils/url"
 import { redirect } from 'next/navigation'
 
 export async function GET(req) {
-    const fullUrl = new URL(req.url)
-    const token = fullUrl.searchParams.get('token')
+    const token = getParamFromUrl({ param: 'token', url: req.url })
 
     if (!token) {
         return new Response('Token is required', {

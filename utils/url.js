@@ -6,4 +6,11 @@ const getUrlParam = ({ param, defaultValue } = {}) => {
     return currentParam
 }
 
-export { getUrlParam }
+const getParamFromUrl = ({ param, url } = {}) => {
+    const fullUrl = new URL(url)
+    const currentParam = fullUrl.searchParams.get(param)
+
+    return currentParam
+}
+
+export { getUrlParam, getParamFromUrl }
