@@ -22,7 +22,7 @@ html {
 body {
   background-color: #FEFEFE;
   direction: rtl;
-  min-height: 100dvh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
 }
