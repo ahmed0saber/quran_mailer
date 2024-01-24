@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import styles from './style.module.css'
+import { getSession } from '@/utils/session-storage'
 
 export default function page() {
     const [logs, setLogs] = useState([])
@@ -13,7 +14,7 @@ export default function page() {
     }, [])
 
     const getLogs = async () => {
-        const user = JSON.parse(sessionStorage.getItem("current-user"))
+        const user = getSession({ key: "current-user", defaultValue: null })
 
         if (!user) {
             return router.push("/admin")

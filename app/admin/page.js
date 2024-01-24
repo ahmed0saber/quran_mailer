@@ -1,5 +1,6 @@
 'use client'
 
+import { setSession } from '@/utils/session-storage'
 import { useRouter } from 'next/navigation'
 import { useRef } from 'react'
 
@@ -22,10 +23,13 @@ export default function page() {
 
             if (res.ok) {
                 console.log("Login successful")
-                sessionStorage.setItem("current-user", JSON.stringify({
-                    username,
-                    password
-                }))
+                setSession({
+                    key: "current-user",
+                    value: {
+                        username,
+                        password
+                    }
+                })
                 router.push("/admin/logs")
             } else {
                 if (res.status === 401) {
