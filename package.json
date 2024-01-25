@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest"
   },
   "dependencies": {
     "mongodb": "^6.3.0",
@@ -14,5 +15,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.49.3"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }

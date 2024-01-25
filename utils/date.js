@@ -11,4 +11,4 @@ function formatDate(date) {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
-export { formatDate }
+module.exports = { formatDate }

@@ -13,4 +13,4 @@ const getParamFromUrl = ({ param, url } = {}) => {
     return currentParam
 }
 
-export { getUrlParam, getParamFromUrl }
+module.exports = { getUrlParam, getParamFromUrl }
