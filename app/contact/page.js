@@ -1,43 +1,22 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useRef } from "react"
+import { useForm } from "react-hook-form"
 
 export default function Contact() {
-    const usernameRef = useRef()
-    const emailRef = useRef()
-    const messageRef = useRef()
-    const submitBtnRef = useRef()
+    const { register, handleSubmit, formState: { isSubmitting } } = useForm()
     const router = useRouter()
 
-    function handleContactFormSubmit(e) {
-        e.preventDefault()
-        if (submitBtnRef.current.classList.contains("is-loading")) {
-            return
-        }
-
-        submitBtnRef.current.classList.add("is-loading")
-
-        fetch("/api/contact", {
+    async function sendContactDetails(data) {
+        await fetch("/api/contact", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                username: usernameRef.current.value,
-                email: emailRef.current.value,
-                message: messageRef.current.value
-            })
+            body: JSON.stringify(data)
         })
-            .then(res => res.json())
-            .then(() => { })
-            .finally(() => {
-                submitBtnRef.current.classList.remove("is-loading")
-                usernameRef.current.value = ""
-                emailRef.current.value = ""
-                messageRef.current.value = ""
-                router.push("/success")
-            })
+
+        router.push("/success")
     }
 
     return (
@@ -49,36 +28,33 @@ export default function Contact() {
                 <p className='text-primary'>
                     يسرنا تواصلكم معنا من خلال النموذج التالي عند الرغبة فى اخبارنا اى شئ يخص هذا الموقع الالكترونى
                 </p>
-                <form className="form" onSubmit={handleContactFormSubmit}>
+                <form className="form" onSubmit={
+                    isSubmitting ? (e) => e.preventDefault() : handleSubmit(sendContactDetails)
+                }>
                     <div className="input-container">
                         <input
                             type="text"
-                            name="name"
                             placeholder="ادخل الاسم بالكامل"
-                            ref={usernameRef}
                             className='form-input'
-                            required
+                            {...register("username", { required: true })}
                         />
                     </div>
                     <div className="input-container">
                         <input
                             type="email"
-                            name="email"
                             placeholder="ادخل البريد الالكترونى"
-                            ref={emailRef}
                             className='form-input'
-                            required
+                            {...register("email", { required: true })}
                         />
                     </div>
                     <div className="input-container">
                         <textarea
                             placeholder="ما الذى ترغب فى اخبارنا به؟"
-                            ref={messageRef}
                             className='form-input form-textarea'
-                            required
+                            {...register("message", { required: true })}
                         ></textarea>
                     </div>
-                    <button className="btn-dark" ref={submitBtnRef}>
+                    <button className={isSubmitting ? "btn-dark is-loading" : "btn-dark"}>
                         ارسال
                     </button>
                 </form>

@@ -12,6 +12,7 @@
     "next": "14.0.4",
     "nodemailer": "^6.9.8",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-hook-form": "^7.49.3"
   }
 }
