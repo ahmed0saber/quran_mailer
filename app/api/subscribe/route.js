@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
 import { addSubscriber, getSubscriberByEmail } from "../utils/database/subscribers"
 import { sendVerificationEmail } from "../utils/email/send"
-import { generateEmailVerificationLink, generateRandomToken } from "./utils"
+import { generateRandomToken } from "../utils/helpers"
 
 export async function POST(req) {
     const { email } = await req.json()
@@ -15,12 +15,7 @@ export async function POST(req) {
     }
 
     const verificationToken = generateRandomToken()
-    const verificationLink = generateEmailVerificationLink({
-        origin: req.headers.get('origin'),
-        token: verificationToken
-    })
-
-    await sendVerificationEmail({ email, verificationLink })
+    await sendVerificationEmail({ email, verificationToken, origin: req.headers.get('origin') })
     await addSubscriber({ email, verificationToken })
 
     return new NextResponse(

@@ -1,6 +1,5 @@
-import mailTransporter from "@/lib/nodemailer";
-
 const sendEmail = async ({ to = process.env.GMAIL_USER, subject, html } = {}) => {
+    const mailTransporter = require('../../../../lib/nodemailer');
     const mailOptions = {
         from: process.env.GMAIL_USER,
         to,
@@ -19,4 +18,10 @@ const sendEmail = async ({ to = process.env.GMAIL_USER, subject, html } = {}) =>
     });
 }
 
-export { sendEmail }
+const generateEmailVerificationLink = ({ origin, token } = {}) => {
+    const verificationLink = `${origin}/api/verify-email?token=${token}`
+
+    return verificationLink
+}
+
+module.exports = { sendEmail, generateEmailVerificationLink }

@@ -4,4 +4,11 @@ const getRandomItemFromArray = (arr) => {
     return randomItem
 }
 
-module.exports = { getRandomItemFromArray }
+const generateRandomToken = () => {
+    const { randomBytes } = require('crypto')
+    const randomToken = randomBytes(16).toString('hex')
+
+    return randomToken
+}
+
+module.exports = { getRandomItemFromArray, generateRandomToken }

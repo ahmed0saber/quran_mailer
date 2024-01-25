@@ -1,5 +1,5 @@
 import { getRandomItemFromArray } from "../helpers"
-import { sendEmail } from "./utils"
+import { generateEmailVerificationLink, sendEmail } from "./utils"
 
 const sendContactEmail = async ({ username, email, message } = {}) => {
     const html = `
@@ -11,7 +11,12 @@ const sendContactEmail = async ({ username, email, message } = {}) => {
     return sendEmail({ subject: "Contact US", html })
 }
 
-const sendVerificationEmail = async ({ email, verificationLink } = {}) => {
+const sendVerificationEmail = async ({ email, verificationToken, origin } = {}) => {
+    const verificationLink = generateEmailVerificationLink({
+        token: verificationToken,
+        origin
+    })
+
     const html = `
         <h1>Welcome to Quran Mailer!</h1>
         <p>Hi there,</p>
