@@ -2,16 +2,9 @@ import { NextResponse } from "next/server"
 import { getSubscribers } from "../utils/database/subscribers"
 import { logToConsole, logToDatabase } from "../utils/loggers"
 import { sendDailyEmail } from "../utils/email/send"
+import { startMeasuringTime } from "../utils/measure-time"
 
 export const maxDuration = 10
-
-const startMeasuringTime = () => {
-    const processStartTime = process.hrtime.bigint()
-
-    return () => {
-        return (process.hrtime.bigint() - processStartTime) / BigInt(1e6)
-    }
-}
 
 export async function GET(request) {
     const getTimeTaken = startMeasuringTime()
