@@ -4,4 +4,4 @@ const getRandomItemFromArray = (arr) => {
     return randomItem
 }
 
-export { getRandomItemFromArray }
+module.exports = { getRandomItemFromArray }
