@@ -6,8 +6,16 @@ import mailTransporter from "@/lib/nodemailer"
 
 export const maxDuration = 10
 
-export async function GET(request) {
+const startMeasuringTime = () => {
     const processStartTime = process.hrtime.bigint()
+
+    return () => {
+        return (process.hrtime.bigint() - processStartTime) / BigInt(1e6)
+    }
+}
+
+export async function GET(request) {
+    const getTimeTaken = startMeasuringTime()
 
     const authHeader = request.headers.get('authorization')
     if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
@@ -23,11 +31,13 @@ export async function GET(request) {
         .find({ isValid: true }, { projection: { _id: 0, email: 1 } })
         .toArray()
 
-    const getSubscribersTimeTaken = (process.hrtime.bigint() - processStartTime) / BigInt(1e6)
-    await sendCronJobEmails(subscribers)
-    const sendEmailsTimeTaken = ((process.hrtime.bigint() - processStartTime) / BigInt(1e6)) - getSubscribersTimeTaken
+    const getSubscribersTimeTaken = getTimeTaken()
 
-    const totalTimeTaken = (process.hrtime.bigint() - processStartTime) / BigInt(1e6)
+    await sendCronJobEmails(subscribers)
+
+    const totalTimeTaken = getTimeTaken()
+    const sendEmailsTimeTaken = totalTimeTaken - getSubscribersTimeTaken
+
     await db
         .collection(process.env.LOGGING_MODEL)
         .insertOne({
