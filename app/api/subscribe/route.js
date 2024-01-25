@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server"
-import { randomBytes } from 'crypto'
 import { addSubscriber, getSubscriberByEmail } from "../utils/database/subscribers"
 import { sendVerificationEmail } from "../utils/email/send"
+import { generateEmailVerificationLink, generateRandomToken } from "./utils"
 
 export async function POST(req) {
     const { email } = await req.json()
@@ -14,7 +14,7 @@ export async function POST(req) {
         )
     }
 
-    const verificationToken = randomBytes(16).toString('hex')
+    const verificationToken = generateRandomToken()
     const verificationLink = generateEmailVerificationLink({
         headers: req.headers,
         token: verificationToken
@@ -27,12 +27,4 @@ export async function POST(req) {
         JSON.stringify({ success: true, message: "Verification email sent." }),
         { status: 200, headers: { "Content-Type": "application/json" } }
     )
-}
-
-const generateEmailVerificationLink = ({ headers, token } = {}) => {
-    const host = headers.host || 'localhost:3000'
-    const protocol = headers['x-forwarded-proto'] || 'http'
-    const verificationLink = `${protocol}://${host}/api/verify-email?token=${token}`
-
-    return verificationLink
 }
