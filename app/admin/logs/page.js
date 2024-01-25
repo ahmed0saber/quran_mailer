@@ -58,14 +58,9 @@ export default function page() {
                 <div className={styles.logsContainer}>
                     {logs.map(log => (
                         <div key={log._id} className={styles.logRecord}>
-                            <p>id: {log._id}</p>
-                            <p>date: {log.date}</p>
-                            <p>level: {log.level}</p>
-                            <p>message: {log.message}</p>
-                            <p>getSubscribersTimeTaken: {log.getSubscribersTimeTaken}</p>
-                            <p>sendEmailsTimeTaken: {log.sendEmailsTimeTaken}</p>
-                            <p>totalTimeTaken: {log.totalTimeTaken}</p>
-                            <p>service: {log.service}</p>
+                            {Object.keys(log).map((key => (
+                                <p key={key}>{key}: {log[key]}</p>
+                            )))}
                         </div>
                     ))}
                 </div>
