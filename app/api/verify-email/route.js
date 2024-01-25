@@ -1,6 +1,6 @@
-import databaseConnection from "@/lib/mongodb"
 import { getParamFromUrl } from "@/utils/url"
 import { redirect } from 'next/navigation'
+import { verifySubscriberByToken } from "../utils/database/subscribers"
 
 export async function GET(req) {
     const token = getParamFromUrl({ param: 'token', url: req.url })
@@ -11,15 +11,7 @@ export async function GET(req) {
         })
     }
 
-    const result = await databaseConnection
-        .collection(process.env.SUBSCRIBERS_MODEL)
-        .findOneAndUpdate(
-            { verificationToken: token, isValid: false },
-            {
-                $set: { isValid: true },
-                $unset: { verificationToken: "" }
-            }
-        )
+    const result = await verifySubscriberByToken(token)
 
     if (!result) {
         return new Response('Invalid or expired token', {

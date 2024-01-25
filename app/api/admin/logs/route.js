@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import databaseConnection from "@/lib/mongodb"
+import { getLogs } from "../../utils/database/logs"
 
 export async function GET(request) {
     const authHeader = request.headers.get('authorization')
@@ -9,10 +9,7 @@ export async function GET(request) {
         })
     }
 
-    const recorded_logs = await databaseConnection
-        .collection(process.env.LOGGING_MODEL)
-        .find()
-        .toArray()
+    const recorded_logs = await getLogs()
 
     return new NextResponse(
         JSON.stringify({

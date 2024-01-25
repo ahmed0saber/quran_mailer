@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server"
-import databaseConnection from "@/lib/mongodb"
 import verses from "@/data/verses"
-import { formatDate } from "@/utils/date"
 import mailTransporter from "@/lib/nodemailer"
+import { getSubscribers } from "../utils/database/subscribers"
+import { addLog } from "../utils/database/logs"
 
 export const maxDuration = 10
 
@@ -24,10 +24,7 @@ export async function GET(request) {
         })
     }
 
-    const subscribers = await databaseConnection
-        .collection(process.env.SUBSCRIBERS_MODEL)
-        .find({ isValid: true }, { projection: { _id: 0, email: 1 } })
-        .toArray()
+    const subscribers = await getSubscribers()
 
     const getSubscribersTimeTaken = getTimeTaken()
 
@@ -36,17 +33,14 @@ export async function GET(request) {
     const totalTimeTaken = getTimeTaken()
     const sendEmailsTimeTaken = totalTimeTaken - getSubscribersTimeTaken
 
-    await databaseConnection
-        .collection(process.env.LOGGING_MODEL)
-        .insertOne({
-            "date": formatDate(new Date()),
-            "level": "INFO",
-            "message": "All users have been notified successfully",
-            "getSubscribersTimeTaken": `${getSubscribersTimeTaken}ms`,
-            "sendEmailsTimeTaken": `${sendEmailsTimeTaken}ms`,
-            "totalTimeTaken": `${totalTimeTaken}ms`,
-            "service": "NotifyUsers"
-        })
+    await addLog({
+        level: "INFO",
+        message: "All users have been notified successfully",
+        getSubscribersTimeTaken: `${getSubscribersTimeTaken}ms`,
+        sendEmailsTimeTaken: `${sendEmailsTimeTaken}ms`,
+        totalTimeTaken: `${totalTimeTaken}ms`,
+        service: "NotifyUsers"
+    })
 
     return new NextResponse(
         JSON.stringify({

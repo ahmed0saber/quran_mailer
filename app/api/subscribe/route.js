@@ -1,15 +1,13 @@
 import { NextResponse } from "next/server"
-import databaseConnection from "@/lib/mongodb"
 import { randomBytes } from 'crypto'
 import mailTransporter from "@/lib/nodemailer"
+import { addSubscriber, getSubscriberByEmail } from "../utils/database/subscribers"
 
 export async function POST(req) {
     const jsonReq = await req.json()
     const { email } = jsonReq
 
-    const subscriber = await databaseConnection
-        .collection(process.env.SUBSCRIBERS_MODEL)
-        .findOne({ email })
+    const subscriber = await getSubscriberByEmail(email)
 
     if (subscriber) {
         return new NextResponse(
@@ -25,13 +23,7 @@ export async function POST(req) {
     })
 
     await sendVerificationEmail(email, verificationLink)
-
-    await databaseConnection
-        .collection(process.env.SUBSCRIBERS_MODEL).insertOne({
-            email,
-            verificationToken,
-            isValid: false
-        })
+    await addSubscriber({ email, verificationToken })
 
     return new NextResponse(
         JSON.stringify({ success: true, message: "Verification email sent." }),
