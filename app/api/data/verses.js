@@ -964,4 +964,4 @@ const verses = [
     },
 ];
 
-export default verses
+module.exports = { verses }
