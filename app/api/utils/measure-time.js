@@ -6,4 +6,4 @@ const startMeasuringTime = () => {
     }
 }
 
-export { startMeasuringTime }
+module.exports = { startMeasuringTime }
