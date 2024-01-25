@@ -1,37 +1,22 @@
 'use client'
 
 import { useRouter } from "next/navigation"
-import { useRef } from "react"
+import { useForm } from "react-hook-form"
 
 export default function Subscribe() {
-    const emailRef = useRef()
-    const submitBtnRef = useRef()
+    const { register, handleSubmit, formState: { isSubmitting } } = useForm()
     const router = useRouter()
 
-    function handleSubscribeFormSubmit(e) {
-        e.preventDefault()
-        if (submitBtnRef.current.classList.contains("is-loading")) {
-            return
-        }
-
-        submitBtnRef.current.classList.add("is-loading")
-
-        fetch("/api/subscribe", {
+    async function subscribeByEmail(data) {
+        await fetch("/api/subscribe", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                email: emailRef.current.value,
-            })
+            body: JSON.stringify(data)
         })
-            .then(res => res.json())
-            .then(() => { })
-            .finally(() => {
-                submitBtnRef.current.classList.remove("is-loading")
-                emailRef.current.value = ""
-                router.push('/success?message=يرجي فحص البريد الالكتروني خاصتك للتحقق من صلاحيته و اتمام عملية الاشتراك فى هذه الخدمة')
-            })
+
+        router.push('/success?message=يرجي فحص البريد الالكتروني خاصتك للتحقق من صلاحيته و اتمام عملية الاشتراك فى هذه الخدمة')
     }
 
     return (
@@ -43,18 +28,18 @@ export default function Subscribe() {
                 <p className='text-primary'>
                     بمجرد الاشتراك فى خدمتنا المجانية سوف تتلقى رسالة تحمل آية من القرآن يوميا عبر بريدك الالكترونى
                 </p>
-                <form className="form" onSubmit={handleSubscribeFormSubmit}>
+                <form className="form" onSubmit={
+                    isSubmitting ? (e) => e.preventDefault() : handleSubmit(subscribeByEmail)
+                }>
                     <div className="input-container js-input-container">
                         <input
                             type="email"
-                            name="email"
                             placeholder="ادخل البريد الالكترونى"
-                            ref={emailRef}
                             className="form-input"
-                            required
+                            {...register("email", { required: true })}
                         />
                     </div>
-                    <button className='btn-dark' ref={submitBtnRef}>
+                    <button className={isSubmitting ? "btn-dark is-loading" : "btn-dark"}>
                         اشتراك
                     </button>
                 </form>

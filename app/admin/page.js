@@ -2,45 +2,34 @@
 
 import { setSession } from '@/utils/session-storage'
 import { useRouter } from 'next/navigation'
-import { useRef } from 'react'
+import { useForm } from 'react-hook-form'
 
 export default function page() {
+    const { register, handleSubmit, formState: { isSubmitting } } = useForm()
     const router = useRouter()
-    const usernameRef = useRef()
-    const passwordRef = useRef()
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        const username = usernameRef.current.value
-        const password = passwordRef.current.value
+    async function loginAsAdmin({ username, password } = {}) {
+        const res = await fetch("/api/admin/login", {
+            headers: {
+                "Authorization": `Basic ${username}:${password}`
+            }
+        })
 
-        try {
-            const res = await fetch("/api/admin/login", {
-                headers: {
-                    "Authorization": `Basic ${username}:${password}`
+        if (res.ok) {
+            setSession({
+                key: "current-user",
+                value: {
+                    username,
+                    password
                 }
             })
-
-            if (res.ok) {
-                console.log("Login successful")
-                setSession({
-                    key: "current-user",
-                    value: {
-                        username,
-                        password
-                    }
-                })
-                router.push("/admin/logs")
+            router.push("/admin/logs")
+        } else {
+            if (res.status === 401) {
+                alert("البيانات المدخلة غير صحيحة")
             } else {
-                if (res.status === 401) {
-                    console.error("Authentication failed: Invalid username or password")
-                    alert("البيانات المدخلة غير صحيحة")
-                } else {
-                    console.error("An error occurred:", res.status)
-                }
+                alert("حدث خطأ ما ، يرجى اعادة المحاولة لاحقا")
             }
-        } catch (error) {
-            console.error("Fetch error:", error.message)
         }
     }
 
@@ -53,28 +42,26 @@ export default function page() {
                 <p className='text-primary'>
                     يمكنك استخدام اسم المستخدم و كلمة المرور الخاصة بك لتتمكن من الدخول الى لوحة التحكم
                 </p>
-                <form className="form" onSubmit={handleSubmit}>
+                <form className="form" onSubmit={
+                    isSubmitting ? (e) => e.preventDefault() : handleSubmit(loginAsAdmin)
+                }>
                     <div className="input-container">
                         <input
                             type='text'
-                            name="name"
                             placeholder='اسم المستخدم'
-                            ref={usernameRef}
                             className='form-input'
-                            required
+                            {...register("username", { required: true })}
                         />
                     </div>
                     <div className="input-container">
                         <input
                             type='password'
-                            name="password"
                             placeholder='كلمة المرور'
-                            ref={passwordRef}
                             className='form-input'
-                            required
+                            {...register("password", { required: true })}
                         />
                     </div>
-                    <button className="btn-dark">
+                    <button className={isSubmitting ? "btn-dark is-loading" : "btn-dark"}>
                         تسجيل الدخول
                     </button>
                 </form>
