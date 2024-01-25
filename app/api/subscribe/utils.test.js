@@ -18,36 +18,12 @@ describe('unit testing - generateRandomToken', () => {
 });
 
 describe('unit testing - generateEmailVerificationLink', () => {
-    it('should generate a correct link with provided headers and token', () => {
+    it('should generate a correct link with provided origin and token', () => {
         const link = generateEmailVerificationLink({
-            headers: {
-                host: 'example.com',
-                'x-forwarded-proto': 'https'
-            },
+            origin: 'http://localhost:3000',
             token: '123456'
         });
-        expect(link).toBe('https://example.com/api/verify-email?token=123456');
-    });
-
-    it('should default to http and localhost when headers are not provided', () => {
-        const link = generateEmailVerificationLink({ token: 'abc123' });
-        expect(link).toBe('http://localhost:3000/api/verify-email?token=abc123');
-    });
-
-    it('should handle missing host in headers', () => {
-        const link = generateEmailVerificationLink({
-            headers: { 'x-forwarded-proto': 'https' },
-            token: 'token123'
-        });
-        expect(link).toBe('https://localhost:3000/api/verify-email?token=token123');
-    });
-
-    it('should handle missing protocol in headers', () => {
-        const link = generateEmailVerificationLink({
-            headers: { host: 'example.com' },
-            token: 'testtoken'
-        });
-        expect(link).toBe('http://example.com/api/verify-email?token=testtoken');
+        expect(link).toBe('http://localhost:3000/api/verify-email?token=123456');
     });
 });
 
@@ -56,11 +32,11 @@ describe('integration testing - should correctly generate random token then gene
         const token = generateRandomToken();
 
         const link = generateEmailVerificationLink({
-            headers: { host: 'example.com', 'x-forwarded-proto': 'https' },
+            origin: 'http://localhost:3000',
             token: token
         });
 
-        const expectedPrefix = 'https://example.com/api/verify-email?token=';
+        const expectedPrefix = 'http://localhost:3000/api/verify-email?token=';
         expect(link.startsWith(expectedPrefix)).toBeTruthy();
         expect(link.slice(expectedPrefix.length)).toBe(token);
     });

@@ -16,7 +16,7 @@ export async function POST(req) {
 
     const verificationToken = generateRandomToken()
     const verificationLink = generateEmailVerificationLink({
-        headers: req.headers,
+        origin: req.headers.get('origin'),
         token: verificationToken
     })
 
