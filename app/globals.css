@@ -264,3 +264,9 @@ footer p a {
   resize: none;
   display: block;
 }
+
+button {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
