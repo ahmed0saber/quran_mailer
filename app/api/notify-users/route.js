@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import clientPromise from "@/lib/mongodb"
+import databaseConnection from "@/lib/mongodb"
 import verses from "@/data/verses"
 import { formatDate } from "@/utils/date"
 import mailTransporter from "@/lib/nodemailer"
@@ -24,9 +24,7 @@ export async function GET(request) {
         })
     }
 
-    const client = await clientPromise
-    const db = client.db(process.env.DATABASE_NAME)
-    const subscribers = await db
+    const subscribers = await databaseConnection
         .collection(process.env.SUBSCRIBERS_MODEL)
         .find({ isValid: true }, { projection: { _id: 0, email: 1 } })
         .toArray()
@@ -38,7 +36,7 @@ export async function GET(request) {
     const totalTimeTaken = getTimeTaken()
     const sendEmailsTimeTaken = totalTimeTaken - getSubscribersTimeTaken
 
-    await db
+    await databaseConnection
         .collection(process.env.LOGGING_MODEL)
         .insertOne({
             "date": formatDate(new Date()),

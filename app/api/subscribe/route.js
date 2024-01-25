@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import clientPromise from "@/lib/mongodb"
+import databaseConnection from "@/lib/mongodb"
 import { randomBytes } from 'crypto'
 import mailTransporter from "@/lib/nodemailer"
 
@@ -7,10 +7,7 @@ export async function POST(req) {
     const jsonReq = await req.json()
     const { email } = jsonReq
 
-    const client = await clientPromise
-    const db = client.db(process.env.DATABASE_NAME)
-
-    const subscriber = await db
+    const subscriber = await databaseConnection
         .collection(process.env.SUBSCRIBERS_MODEL)
         .findOne({ email })
 
@@ -29,11 +26,12 @@ export async function POST(req) {
 
     await sendVerificationEmail(email, verificationLink)
 
-    await db.collection(process.env.SUBSCRIBERS_MODEL).insertOne({
-        email,
-        verificationToken,
-        isValid: false
-    })
+    await databaseConnection
+        .collection(process.env.SUBSCRIBERS_MODEL).insertOne({
+            email,
+            verificationToken,
+            isValid: false
+        })
 
     return new NextResponse(
         JSON.stringify({ success: true, message: "Verification email sent." }),
