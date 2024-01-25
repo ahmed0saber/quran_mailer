@@ -59,9 +59,9 @@ export default function QuranSection() {
         <section className="quran-section container">
             <div className="quran-section-container">
                 {surahs.map((surah, index) => (
-                    <div key={surah.number} className="surah-card" onClick={() => handleSurahClick(index)}>
+                    <button key={surah.number} className="surah-card" onClick={() => handleSurahClick(index)}>
                         <h2>{surah.name}</h2>
-                    </div>
+                    </button>
                 ))}
             </div>
             <div className={["quran-section-popup", isPopupActive && "active"].join(" ")}>
