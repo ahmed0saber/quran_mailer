@@ -1,9 +1,5 @@
 import Link from 'next/link'
-import dynamic from 'next/dynamic';
-
-const DynamicMessage = dynamic(() => import('./components/DynamicMessage'), {
-    ssr: false
-});
+import DynamicMessage from './components/DynamicMessage';
 
 export default function Success() {
     return (
