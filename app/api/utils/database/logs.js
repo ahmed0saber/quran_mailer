@@ -1,13 +1,9 @@
 import databaseConnection from "@/lib/mongodb"
-import { formatDate } from "@/utils/date"
 
 const addLog = async (log) => {
     return databaseConnection
         .collection(process.env.LOGGING_MODEL)
-        .insertOne({
-            date: formatDate(new Date()),
-            ...log
-        })
+        .insertOne(log)
 }
 
 const getLogs = async () => {

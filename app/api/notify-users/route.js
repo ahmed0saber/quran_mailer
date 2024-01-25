@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import verses from "@/data/verses"
 import mailTransporter from "@/lib/nodemailer"
 import { getSubscribers } from "../utils/database/subscribers"
-import { addLog } from "../utils/database/logs"
+import { logToConsole, logToDatabase } from "../utils/loggers"
 
 export const maxDuration = 10
 
@@ -25,7 +25,6 @@ export async function GET(request) {
     }
 
     const subscribers = await getSubscribers()
-
     const getSubscribersTimeTaken = getTimeTaken()
 
     await sendCronJobEmails(subscribers)
@@ -33,14 +32,15 @@ export async function GET(request) {
     const totalTimeTaken = getTimeTaken()
     const sendEmailsTimeTaken = totalTimeTaken - getSubscribersTimeTaken
 
-    await addLog({
-        level: "INFO",
+    const detailsToBeLogged = {
         message: "All users have been notified successfully",
         getSubscribersTimeTaken: `${getSubscribersTimeTaken}ms`,
         sendEmailsTimeTaken: `${sendEmailsTimeTaken}ms`,
         totalTimeTaken: `${totalTimeTaken}ms`,
         service: "NotifyUsers"
-    })
+    }
+    await logToDatabase(detailsToBeLogged)
+    logToConsole(detailsToBeLogged)
 
     return new NextResponse(
         JSON.stringify({
