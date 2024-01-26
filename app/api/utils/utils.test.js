@@ -12,7 +12,7 @@ describe('unit testing - getRandomItemFromArray', () => {
 
 describe('integration testing - get random item from verses array', () => {
     it('should return a random verse from the verses array', () => {
-        const { verses } = require('../data/verses');
+        const verses = require('../data/verses');
         const item = getRandomItemFromArray(verses);
         expect(verses).toContain(item);
     });

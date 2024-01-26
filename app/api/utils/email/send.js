@@ -31,7 +31,7 @@ const sendVerificationEmail = async ({ email, verificationToken, origin } = {}) 
 }
 
 const sendDailyEmail = async ({ subscribers } = {}) => {
-    const { verses } = require("../../data/verses")
+    const verses = require("../../data/verses")
     const randomVerse = getRandomItemFromArray(verses)
     const stringifiedEmails = subscribers.map(subscriber => subscriber.email).join(", ")
 

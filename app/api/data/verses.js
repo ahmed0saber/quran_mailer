@@ -964,4 +964,4 @@ const verses = [
     },
 ];
 
-module.exports = { verses }
+module.exports = verses
