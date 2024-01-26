@@ -9,7 +9,7 @@ const addLog = async (log) => {
 const getLogs = async () => {
     const recorded_logs = await databaseConnection
         .collection(process.env.LOGGING_MODEL)
-        .find()
+        .find({}, { projection: { _id: 0 } })
         .toArray()
 
     return recorded_logs

@@ -32,7 +32,7 @@ export default function page() {
 
             if (res.ok) {
                 const data = await res.json()
-                setLogs(data.recorded_logs)
+                setLogs(data)
             } else {
                 if (res.status === 401) {
                     console.error("Authorization failed: Invalid username or password")

@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server"
 import { getSubscribers } from "../utils/database/subscribers"
 import { logToConsole, logToDatabase } from "../utils/loggers"
 import { sendDailyEmail } from "../utils/email/send"
@@ -11,9 +10,7 @@ export async function GET(request) {
 
     const authHeader = request.headers.get('authorization')
     if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-        return new Response('Unauthorized', {
-            status: 401,
-        })
+        return new Response('Unauthorized', { status: 401 })
     }
 
     const subscribers = await getSubscribers()
@@ -34,8 +31,5 @@ export async function GET(request) {
     await logToDatabase(detailsToBeLogged)
     logToConsole(detailsToBeLogged)
 
-    return new NextResponse(
-        JSON.stringify({ success: true }),
-        { status: 200, headers: { "Content-Type": "application/json" } }
-    )
+    return new Response('', { status: 200 })
 }

@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server"
 import { getLogs } from "../../utils/database/logs"
 
 export async function GET(request) {
@@ -9,15 +8,10 @@ export async function GET(request) {
         })
     }
 
-    const recorded_logs = await getLogs()
+    const logs = await getLogs()
 
-    return new NextResponse(
-        JSON.stringify({
-            recorded_logs
-        }),
-        {
-            status: 200,
-            headers: { "Content-Type": "application/json" },
-        }
+    return new Response(
+        JSON.stringify(logs),
+        { status: 200, headers: { "Content-Type": "application/json" } }
     )
 }
