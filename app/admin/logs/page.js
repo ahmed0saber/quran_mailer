@@ -56,8 +56,8 @@ export default function page() {
                     هنا يمكنك متابعة التقريرات الخاصة بالدوال التى تعمل على الخادم
                 </p>
                 <div className={styles.logsContainer}>
-                    {logs.map(log => (
-                        <div key={log._id} className={styles.logRecord}>
+                    {logs.map((log, index) => (
+                        <div key={index} className={styles.logRecord}>
                             {Object.keys(log).map((key => (
                                 <p key={key}>{key}: {log[key]}</p>
                             )))}
