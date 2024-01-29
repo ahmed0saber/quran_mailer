@@ -84,7 +84,7 @@ const sendDailyEmail = async ({ subscribers } = {}) => {
             <div>
                 <p>
                     للتواصل معنا
-                    <a href="https://quran-mailer.onrender.com/contact">
+                    <a href="https://quran-mailer.vercel.app/contact">
                         اضغط هنا
                     </a>
                 </p>
@@ -96,7 +96,7 @@ const sendDailyEmail = async ({ subscribers } = {}) => {
                 </p>
                 <p>
                     لا تنسى مشاركة
-                    <a href="https://quran-mailer.onrender.com/subscribe">
+                    <a href="https://quran-mailer.vercel.app/subscribe">
                         هذا الرابط
                     </a>
                     مع أحبائك ليتمكنوا من الاشتراك فى هذه الخدمة
