@@ -1,5 +1,7 @@
 import { getLogs } from "../../utils/database/logs"
 
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
     const logs = await getLogs()
 
