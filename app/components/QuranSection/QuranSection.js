@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import './style.css';
+import normalizeArabic from './arabic-normalizer';
 
 export default function QuranSection() {
     const [surahs, setSurahs] = useState([]);
     const [selectedSurahContent, setSelectedSurahContent] = useState('');
     const [isPopupActive, setIsPopupActive] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
         const fetchSurahs = async () => {
@@ -57,11 +59,20 @@ export default function QuranSection() {
 
     return (
         <section className="quran-section container">
+            <input
+                type='search'
+                name='search'
+                placeholder='هل تبحث عن سورة محددة؟ (اكتبها هنا)'
+                className='form-input'
+                onChange={(e) => setSearchQuery(e.target.value)}
+            />
             <div className="quran-section-container">
                 {surahs.map((surah, index) => (
-                    <button key={surah.number} className="surah-card" onClick={() => handleSurahClick(index)}>
-                        <h2>{surah.name}</h2>
-                    </button>
+                    normalizeArabic(surah.name).includes(normalizeArabic(searchQuery)) && (
+                        <button key={surah.number} className="surah-card" onClick={() => handleSurahClick(index)}>
+                            <h2>{surah.name}</h2>
+                        </button>
+                    )
                 ))}
             </div>
             <div className={["quran-section-popup", isPopupActive && "active"].join(" ")}>

@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
 
-.quran-section,
-.quran-section * {
+.quran-section-container,
+.quran-section-popup * {
     font-family: 'Amiri', serif;
+}
+
+.quran-section .form-input {
+    margin-bottom: 12px;
 }
 
 .quran-section-container {
