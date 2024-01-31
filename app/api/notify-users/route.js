@@ -4,6 +4,7 @@ import { sendDailyEmail } from "../utils/email/send"
 import { startMeasuringTime } from "../utils/measure-time"
 
 export const maxDuration = 10
+export const dynamic = 'force-dynamic'
 
 export async function GET(request) {
     const getTimeTaken = startMeasuringTime()

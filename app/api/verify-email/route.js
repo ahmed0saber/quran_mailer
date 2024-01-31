@@ -2,6 +2,8 @@ import { getParamFromUrl } from "@/utils/url"
 import { redirect } from 'next/navigation'
 import { verifySubscriberByToken } from "../utils/database/subscribers"
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(req) {
     const token = getParamFromUrl({ param: 'token', url: req.url })
 
