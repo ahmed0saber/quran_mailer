@@ -18,13 +18,14 @@ const sendVerificationEmail = async ({ email, verificationToken, origin } = {}) 
     })
 
     const html = `
-        <h1>Welcome to Quran Mailer!</h1>
-        <p>Hi there,</p>
-        <p>To get started, please verify your email address by clicking the button below:</p>
-        <a href="${verificationLink}" class="button">Verify Email</a>
-        <p>If the button doesn't work, please copy and paste the following link into your browser:</p>
-        <p><a href="${verificationLink}">${verificationLink}</a></p>
-        <p>If you did not sign up for Quran Mailer, you can safely ignore this email.</p>
+        <div dir="rtl">
+            <h1>مرحبًا بك في خدمة إرسال الآيات القرآنية يوميا!</h1>
+            <p>للبدء، يرجى تأكيد عنوان بريدك الإلكتروني عن طريق النقر على الزر أدناه:</p>
+            <a href="${verificationLink}">تأكيد البريد الإلكتروني</a>
+            <p>إذا لم يعمل الزر، يرجى نسخ ولصق الرابط التالي في متصفحك:</p>
+            <p><a href="${verificationLink}">${verificationLink}</a></p>
+            <p>إذا لم تقم بالتسجيل في هذه الخدمة، يمكنك تجاهل هذا البريد الإلكتروني بأمان.</p>
+        </div>
     `
 
     return sendEmail({ to: email, subject: "Email Verification", html })
