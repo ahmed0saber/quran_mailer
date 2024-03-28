@@ -16,6 +16,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ar">
+      <head>
+        <link
+          rel="preload"
+          href="/hero-section.webp"
+          as="image"
+        />
+      </head>
       <body className={Cairo_Arabic_Font.className}>
         <Navbar />
         {children}

@@ -1,7 +1,7 @@
 .hero-section {
     width: 100%;
     min-height: calc(100svh - 68px);
-    background: #323232C2 url("../public/hero-section.webp") center center no-repeat;
+    background: #323232C2 url("/hero-section.webp") center center no-repeat;
     background-size: cover;
     background-blend-mode: overlay;
     display: flex;
