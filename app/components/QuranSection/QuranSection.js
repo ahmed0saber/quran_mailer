@@ -12,11 +12,10 @@ export default function QuranSection() {
 
     useEffect(() => {
         const fetchSurahs = async () => {
-            const API_URL = "https://api.alquran.cloud/v1/meta";
             try {
-                const response = await fetch(API_URL);
+                const response = await fetch("/api/surahs");
                 const jsonResponse = await response.json();
-                setSurahs(jsonResponse.data.surahs.references);
+                setSurahs(jsonResponse);
             } catch (error) {
                 console.error("Error fetching surahs:", error);
             }
