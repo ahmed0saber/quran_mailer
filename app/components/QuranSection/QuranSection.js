@@ -35,7 +35,12 @@ export default function QuranSection() {
                 ayahs[0].text = ayahs[0].text.replace("بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ ", "")
             }
 
-            const surahContent = ayahs.map(ayah =>
+            const surahName = jsonResponse.data.name ? `
+                <div class="surah-name">
+                    <h2>${jsonResponse.data.name}</h2>
+                </div>
+            ` : '';
+            const surahContent = surahName + ayahs.map(ayah =>
                 `<span>${ayah.text.replace("\n", "")}</span><span class="ayah-number">${ayah.numberInSurah}</span>`
             ).join('');
 
@@ -55,7 +60,6 @@ export default function QuranSection() {
     useEffect(() => {
         return () => closePopup()
     }, [])
-
     return (
         <section className="quran-section container">
             <input
