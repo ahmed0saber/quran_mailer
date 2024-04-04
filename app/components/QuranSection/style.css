@@ -131,3 +131,12 @@
     -o-border-radius: 50%;
     border-radius: 50%;
 }
+
+
+.surah-name{
+    font-weight: bold;
+    margin-bottom: 40px;
+    font-size: larger;
+    display: flex;
+    justify-content: center;
+}
