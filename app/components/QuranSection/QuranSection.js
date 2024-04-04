@@ -9,6 +9,7 @@ export default function QuranSection() {
     const [selectedSurahContent, setSelectedSurahContent] = useState('');
     const [isPopupActive, setIsPopupActive] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
+
     useEffect(() => {
         const fetchSurahs = async () => {
             try {
@@ -29,16 +30,20 @@ export default function QuranSection() {
             const response = await fetch(SURAH_API_ENDPOINT);
             const jsonResponse = await response.json();
             const ayahs = jsonResponse.data.ayahs;
+
             if (index > 0) {
                 ayahs[0].text = ayahs[0].text.replace("بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ ", "")
             }
-            const surahName = jsonResponse.data.name?`<div  class="surah-name"> 
-            <h2 >${jsonResponse.data.name}</h2>
-            </div>
-            ` : ''
-            const surahContent =surahName+ ayahs.map(ayah =>
+
+            const surahName = jsonResponse.data.name ? `
+                <div class="surah-name">
+                    <h2>${jsonResponse.data.name}</h2>
+                </div>
+            ` : '';
+            const surahContent = surahName + ayahs.map(ayah =>
                 `<span>${ayah.text.replace("\n", "")}</span><span class="ayah-number">${ayah.numberInSurah}</span>`
             ).join('');
+
             document.body.classList.add("quran-popup-disable-scroll");
             setSelectedSurahContent(surahContent);
             setIsPopupActive(true);
