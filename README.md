@@ -66,6 +66,12 @@ npm run dev
 
 6. Visit http://localhost:3000 in your web browser to access Quran Mailer.
 
+7. Run test suites when needed:
+
+```
+npm run test
+```
+
 ## Usage
 
 To subscribe to the daily email service and receive Quranic verses, simply submit your email address on subscription page.
@@ -76,9 +82,11 @@ Contributions are welcome! If you would like to contribute to Quran Mailer, plea
 
 1. Fork the repository.
 2. Create a new branch for your feature or bug fix.
-3. Make your changes and commit them.
-4. Push your changes to your fork.
-5. Submit a pull request to the main repository.
+3. Make your changes.
+4. Run the test suites and modify your code if anyone failed till all test suites succeed.
+5. Commit your changes
+6. Push your changes to your fork.
+7. Submit a pull request to the main repository.
 
 If you don't have any idea about what to contribute with, here are some ideas:
 
@@ -88,6 +96,7 @@ If you don't have any idea about what to contribute with, here are some ideas:
 - **Issue Resolution**: Address validated issues from the `issues` page.
 - **Code Updates and Refactoring**: Refactor code or make updates to enhance the project.
 - **Documentation**: Help improve the project's documentation, including the `README.md` file.
+- **Add Test Cases**: Add more test cases that can help keep the code quality high over time.
 
 For more detailed guidance on contributing to open source projects, check out this YouTube playlist: [Contributing to Open Source Projects (in Arabic)](https://youtube.com/playlist?list=PLNknCqb-phEjNHT607vp-4e4o3wgK9SoN).
 

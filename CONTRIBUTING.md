@@ -6,10 +6,11 @@ We welcome contributions from the community to improve Quran Mailer! If you woul
 2. **Clone** your forked repository to your local machine.
 3. **Create a new branch** for your feature or bug fix.
 4. **Make your changes** and ensure they follow the project's coding style and conventions.
-5. **Commit** your changes and provide a descriptive commit message.
-6. **Push** your changes to your forked repository.
-7. **Submit a pull request** to the main repository, explaining the changes you've made and why they should be merged.
-8. **Be responsive** to any feedback or questions regarding your pull request.
+5. **Run the test suites** and modify your code if anyone failed till all test suites succeed.
+6. **Commit** your changes and provide a descriptive commit message.
+7. **Push** your changes to your forked repository.
+8. **Submit a pull request** to the main repository, explaining the changes you've made and why they should be merged.
+9. **Be responsive** to any feedback or questions regarding your pull request.
 
 If you don't have any idea about what to contribute with, here are some ideas:
 
@@ -19,6 +20,7 @@ If you don't have any idea about what to contribute with, here are some ideas:
 - **Issue Resolution**: Address validated issues from the `issues` page.
 - **Code Updates and Refactoring**: Refactor code or make updates to enhance the project.
 - **Documentation**: Help improve the project's documentation, including the `README.md` file.
+- **Add Test Cases**: Add more test cases that can help keep the code quality high over time.
 
 For more detailed guidance on contributing to open source projects, check out this YouTube playlist: [Contributing to Open Source Projects (in Arabic)](https://youtube.com/playlist?list=PLNknCqb-phEjNHT607vp-4e4o3wgK9SoN).
 
