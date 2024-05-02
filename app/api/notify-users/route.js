@@ -27,7 +27,8 @@ export async function GET(request) {
         getSubscribersTimeTaken: `${getSubscribersTimeTaken}ms`,
         sendEmailsTimeTaken: `${sendEmailsTimeTaken}ms`,
         totalTimeTaken: `${totalTimeTaken}ms`,
-        service: "NotifyUsers"
+        service: "NotifyUsers",
+        subscribersCount: subscribers.length,
     }
     await logToDatabase(detailsToBeLogged)
     logToConsole(detailsToBeLogged)
