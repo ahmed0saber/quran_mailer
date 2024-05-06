@@ -3,9 +3,11 @@ import { generateEmailVerificationLink, sendEmail } from "./utils"
 
 const sendContactEmail = async ({ username, email, message } = {}) => {
     const html = `
-        <p>Username: ${username}</p>
-        <p>Email: ${email}</p>
-        <p>Message: ${message}</p>
+        <div style="font-family:system-ui;">
+            <p>Username: ${username}</p>
+            <p>Email: ${email}</p>
+            <p>Message: ${message}</p>
+        </div>
     `
 
     return sendEmail({ subject: "Contact US", html })
@@ -18,7 +20,7 @@ const sendVerificationEmail = async ({ email, verificationToken, origin } = {}) 
     })
 
     const html = `
-        <div dir="rtl">
+        <div dir="rtl" style="font-family:system-ui;">
             <h1>مرحبًا بك في خدمة إرسال الآيات القرآنية يوميا!</h1>
             <p>للبدء، يرجى تأكيد عنوان بريدك الإلكتروني عن طريق النقر على الزر أدناه:</p>
             <a href="${verificationLink}">تأكيد البريد الإلكتروني</a>
@@ -37,7 +39,7 @@ const sendDailyEmail = async ({ subscribers } = {}) => {
     const stringifiedEmails = subscribers.map(subscriber => subscriber.email).join(", ")
 
     const html = `
-        <div style="background-color:#F7F7F7;direction:rtl;text-align:right;padding:12px">
+        <div dir="rtl" style="background-color:#F7F7F7;padding:12px;font-family:system-ui;">
             <h2
                 style="color:#323232;
                 width:fit-content;
