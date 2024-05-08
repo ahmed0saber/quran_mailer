@@ -14,8 +14,8 @@ export default function QuranSection() {
         const fetchSurahs = async () => {
             try {
                 const response = await fetch("/api/surahs");
-                const jsonResponse = await response.json();
-                setSurahs(jsonResponse);
+                const data = await response.json();
+                setSurahs(data);
             } catch (error) {
                 console.error("Error fetching surahs:", error);
             }
@@ -25,19 +25,19 @@ export default function QuranSection() {
     }, []);
 
     const handleSurahClick = async (index) => {
-        const SURAH_API_ENDPOINT = `https://api.alquran.cloud/v1/surah/${index + 1}`;
+        const SURAH_API_ENDPOINT = `/api/surah-ayahs/${index + 1}`;
         try {
             const response = await fetch(SURAH_API_ENDPOINT);
-            const jsonResponse = await response.json();
-            const ayahs = jsonResponse.data.ayahs;
+            const data = await response.json();
+            const ayahs = data.ayahs;
 
             if (index > 0) {
                 ayahs[0].text = ayahs[0].text.replace("بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ ", "")
             }
 
-            const surahName = jsonResponse.data.name ? `
+            const surahName = data.name ? `
                 <div class="surah-name">
-                    <h2>${jsonResponse.data.name}</h2>
+                    <h2>${data.name}</h2>
                 </div>
             ` : '';
             const surahContent = surahName + ayahs.map(ayah =>
