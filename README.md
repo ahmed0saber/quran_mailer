@@ -72,6 +72,12 @@ npm run dev
 npm run test
 ```
 
+8. Get surahs data when needed:
+
+```
+npm run get:surahs
+```
+
 ## Usage
 
 To subscribe to the daily email service and receive Quranic verses, simply submit your email address on subscription page.
