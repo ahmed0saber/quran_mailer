@@ -1,38 +1,51 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import styles from './style.module.css'
 import { getSession, removeSession } from '@/utils/session-storage'
 
 export default function page() {
     const [logs, setLogs] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [isDone, setIsDone] = useState(false)
+    const skip = useRef(0)
+    const user = useRef(getSession({ key: "current-user", defaultValue: null }))
     const router = useRouter()
 
     useEffect(() => {
-        getLogs()
-    }, [])
-
-    const getLogs = async () => {
-        const user = getSession({ key: "current-user", defaultValue: null })
-
-        if (!user) {
+        const controller = new AbortController()
+        if (!user.current) {
             return router.push("/admin")
         }
 
-        const username = user.username
-        const password = user.password
+        getLogs({ signal: controller.signal })
+
+        return () => {
+            controller.abort({ message: "Component Unmounted!" })
+        }
+    }, [])
+
+    const getLogs = async ({ signal }) => {
+        setIsLoading(true)
 
         try {
-            const res = await fetch("/api/admin/logs", {
+            const res = await fetch(`/api/admin/logs?skip=${skip.current}`, {
+                signal,
                 headers: {
-                    "Authorization": `Basic ${username}:${password}`
+                    "Authorization": `Basic ${user.current.username}:${user.current.password}`
                 }
             })
 
             if (res.ok) {
                 const data = await res.json()
-                setLogs(data)
+                if (data.logs.length === 0) {
+                    setIsDone(true)
+                    return
+                }
+
+                setLogs(prev => [...prev, ...data.logs])
+                skip.current = data.skip
             } else {
                 if (res.status === 401) {
                     console.error("Authorization failed: Invalid username or password")
@@ -44,6 +57,8 @@ export default function page() {
             }
         } catch (error) {
             console.error("Fetch error:", error.message)
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -76,6 +91,14 @@ export default function page() {
                         </div>
                     ))}
                 </div>
+                {isLoading | logs.length === 0 | isDone ? null : (
+                    <button
+                        className='btn-dark mt-3'
+                        onClick={getLogs}
+                    >
+                        تحميل المزيد
+                    </button>
+                )}
             </section>
         </main>
     )

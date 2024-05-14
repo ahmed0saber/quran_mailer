@@ -1,4 +1,8 @@
 const getSession = ({ key, defaultValue } = {}) => {
+    if (typeof window === "undefined") {
+        return null
+    }
+
     const storedSession = sessionStorage.getItem(key)
     if (storedSession) {
         return JSON.parse(storedSession)
