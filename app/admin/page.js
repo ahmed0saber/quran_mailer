@@ -1,12 +1,21 @@
 'use client'
 
-import { setSession } from '@/utils/session-storage'
+import { getSession, setSession } from '@/utils/session-storage'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 export default function page() {
     const { register, handleSubmit, formState: { isSubmitting } } = useForm()
     const router = useRouter()
+
+    useEffect(() => {
+        const user = getSession({ key: "current-user", defaultValue: null })
+
+        if (user) {
+            return router.push("/admin/logs")
+        }
+    }, [])
 
     async function loginAsAdmin({ username, password } = {}) {
         const res = await fetch("/api/admin/login", {
