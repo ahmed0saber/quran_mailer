@@ -47,6 +47,11 @@ export default function page() {
         }
     }
 
+    const logout = () => {
+        removeSession("current-user")
+        router.push("/admin")
+    }
+
     return (
         <main>
             <section className="container">
@@ -56,6 +61,12 @@ export default function page() {
                 <p className='text-primary'>
                     هنا يمكنك متابعة التقريرات الخاصة بالدوال التى تعمل على الخادم
                 </p>
+                <button
+                    className='btn-dark mt-3'
+                    onClick={logout}
+                >
+                    تسجيل الخروج
+                </button>
                 <div className={styles.logsContainer}>
                     {logs.map((log, index) => (
                         <div key={index} className={styles.logRecord}>

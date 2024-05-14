@@ -270,3 +270,7 @@ button {
   -ms-user-select: none;
   user-select: none;
 }
+
+.mt-3 {
+  margin-top: 12px;
+}
