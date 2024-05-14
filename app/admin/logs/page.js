@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import styles from './style.module.css'
-import { getSession } from '@/utils/session-storage'
+import { getSession, removeSession } from '@/utils/session-storage'
 
 export default function page() {
     const [logs, setLogs] = useState([])
@@ -36,6 +36,7 @@ export default function page() {
             } else {
                 if (res.status === 401) {
                     console.error("Authorization failed: Invalid username or password")
+                    removeSession("current-user")
                     router.push("/admin")
                 } else {
                     console.error("An error occurred:", res.status)
