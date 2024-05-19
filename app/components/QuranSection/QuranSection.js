@@ -8,7 +8,6 @@ import './style.css';
 export default function QuranSection() {
     const [surahs, setSurahs] = useState([]);
     const [selectedSurah, setSelectedSurah] = useState(null);
-    const [isPopupActive, setIsPopupActive] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
@@ -37,14 +36,13 @@ export default function QuranSection() {
 
             document.body.classList.add("quran-popup-disable-scroll");
             setSelectedSurah(data);
-            setIsPopupActive(true);
         } catch (error) {
             console.error("Error fetching surah details:", error);
         }
     };
 
     const closePopup = () => {
-        setIsPopupActive(false);
+        setSelectedSurah(null);
         document.body.classList.remove("quran-popup-disable-scroll");
     };
 
@@ -70,7 +68,7 @@ export default function QuranSection() {
                     )
                 ))}
             </div>
-            <div className={["quran-section-popup", isPopupActive && "active"].join(" ")}>
+            <div className={["quran-section-popup", selectedSurah && "active"].join(" ")}>
                 <i className="close-icon" onClick={closePopup}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                         className="w-5 h-5">
