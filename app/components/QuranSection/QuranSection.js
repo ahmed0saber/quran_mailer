@@ -1,12 +1,12 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import './style.css';
 import normalizeArabic from './arabic-normalizer';
+import './style.css';
 
 export default function QuranSection() {
     const [surahs, setSurahs] = useState([]);
-    const [selectedSurahContent, setSelectedSurahContent] = useState('');
+    const [selectedSurah, setSelectedSurah] = useState(null);
     const [isPopupActive, setIsPopupActive] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
 
@@ -29,23 +29,13 @@ export default function QuranSection() {
         try {
             const response = await fetch(SURAH_API_ENDPOINT);
             const data = await response.json();
-            const ayahs = data.ayahs;
 
             if (index > 0) {
-                ayahs[0].text = ayahs[0].text.replace("بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ ", "")
+                data.ayahs[0].text = data.ayahs[0].text.replace("بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ ", "")
             }
 
-            const surahName = data.name ? `
-                <div class="surah-name">
-                    <h2>${data.name}</h2>
-                </div>
-            ` : '';
-            const surahContent = surahName + ayahs.map(ayah =>
-                `<span>${ayah.text.replace("\n", "")}</span><span class="ayah-number">${ayah.numberInSurah}</span>`
-            ).join('');
-
             document.body.classList.add("quran-popup-disable-scroll");
-            setSelectedSurahContent(surahContent);
+            setSelectedSurah(data);
             setIsPopupActive(true);
         } catch (error) {
             console.error("Error fetching surah details:", error);
@@ -60,6 +50,7 @@ export default function QuranSection() {
     useEffect(() => {
         return () => closePopup()
     }, [])
+
     return (
         <section className="quran-section container">
             <input
@@ -86,7 +77,19 @@ export default function QuranSection() {
                             d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
                     </svg>
                 </i>
-                <div className="popup-content" dangerouslySetInnerHTML={{ __html: selectedSurahContent }}></div>
+                {selectedSurah ? (
+                    <div className="popup-content">
+                        <div class="surah-name">
+                            <h2>{selectedSurah.name}</h2>
+                        </div>
+                        {selectedSurah.ayahs.map(ayah => (
+                            <>
+                                <span>{ayah.text.replace("\n", "")}</span>
+                                <span class="ayah-number">{ayah.numberInSurah}</span>
+                            </>
+                        ))}
+                    </div>
+                ) : null}
             </div>
         </section>
     )
