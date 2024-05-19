@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import normalizeArabic from './arabic-normalizer';
+import Ayah from './components/Ayah';
 import './style.css';
 
 export default function QuranSection() {
@@ -82,12 +83,7 @@ export default function QuranSection() {
                         <div class="surah-name">
                             <h2>{selectedSurah.name}</h2>
                         </div>
-                        {selectedSurah.ayahs.map(ayah => (
-                            <>
-                                <span>{ayah.text.replace("\n", "")}</span>
-                                <span class="ayah-number">{ayah.numberInSurah}</span>
-                            </>
-                        ))}
+                        {selectedSurah.ayahs.map(ayah => <Ayah ayah={ayah}/>)}
                     </div>
                 ) : null}
             </div>
