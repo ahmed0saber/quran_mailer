@@ -74,12 +74,17 @@
     border-radius: 10px;
 }
 
+.modal-icons {
+    display: flex;
+    justify-content: space-between;
+}
+
 .quran-section-popup i {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
     cursor: pointer;
     background-color: #ccc;
     -webkit-border-radius: 50%;
@@ -95,8 +100,8 @@
 }
 
 .quran-section-popup i svg {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
 }
 
 .quran-section-popup i:hover {
@@ -142,4 +147,39 @@
 
 .highlighted {
     background-color: #00800040;
+}
+
+@media print {
+
+    .navbar,
+    .footer,
+    main>*:not(.quran-section),
+    .quran-section>*:not(.quran-section-popup) {
+        display: none;
+    }
+
+    .quran-section {
+        position: static;
+    }
+
+    .quran-section-popup {
+        padding: 0;
+        position: static;
+    }
+
+    .modal-icons {
+        display: none;
+    }
+
+    .quran-section-popup::-webkit-scrollbar {
+        width: 0px;
+    }
+
+    .quran-section-popup .popup-content {
+        border-bottom: none;
+    }
+
+    .quran-section-popup .popup-content span:not(.ayah-number) {
+        line-height: 48px;
+    }
 }

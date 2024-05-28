@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <footer>
+        <footer className="footer">
             <p>
                 تم إنشاء الموقع بواسطة
                 <a href="https://ahmed0saber-links-tree.onrender.com/" target="_blank">
