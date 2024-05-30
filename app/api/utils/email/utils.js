@@ -1,10 +1,11 @@
-const sendEmail = async ({ to = process.env.GMAIL_USER, subject, html } = {}) => {
+const sendEmail = async ({ to = process.env.GMAIL_USER, subject, html, attachments } = {}) => {
     const mailTransporter = require('../../../../lib/nodemailer');
     const mailOptions = {
         from: process.env.GMAIL_USER,
         to,
         subject,
-        html
+        html,
+        attachments
     }
 
     return new Promise((resolve, reject) => {
