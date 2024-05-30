@@ -1,13 +1,55 @@
 .logsContainer {
     margin-top: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    overflow-x: auto;
+    direction: ltr;
 }
 
-.logRecord {
-    border: 1px solid #323232;
-    padding: 12px;
-    width: 100%;
-    direction: ltr;
+.logsTable {
+    min-width: 1410px;
+}
+
+.logsTable header {
+    font-weight: bold;
+}
+
+.logsTable :global(.row) {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px solid #E1E1E1;
+}
+
+.logsTable :global(.col) {
+    flex: 1 0;
+}
+
+.logsTable :global(.service-col) {
+    flex-basis: 110px;
+}
+
+.logsTable :global(.date-col) {
+    flex-basis: 190px;
+}
+
+.logsTable :global(.level-col) {
+    flex-basis: 70px;
+}
+
+.logsTable :global(.message-col) {
+    flex-basis: 350px;
+}
+
+.logsTable :global(.count-col) {
+    flex-basis: 150px;
+}
+
+.logsTable :global(.total-time-col) {
+    flex-basis: 140px;
+}
+
+.logsTable :global(.subscribers-time-col) {
+    flex-basis: 210px;
+}
+
+.logsTable :global(.emails-time-col) {
+    flex-basis: 190px;
 }

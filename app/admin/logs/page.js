@@ -83,13 +83,30 @@ export default function page() {
                     تسجيل الخروج
                 </button>
                 <div className={styles.logsContainer}>
-                    {logs.map((log, index) => (
-                        <div key={index} className={styles.logRecord}>
-                            {Object.keys(log).map((key => (
-                                <p key={key}>{key}: {log[key]}</p>
-                            )))}
-                        </div>
-                    ))}
+                    <div className={styles.logsTable}>
+                        <header className='row'>
+                            <span className='col service-col'>Service</span>
+                            <span className='col date-col'>Date</span>
+                            <span className='col level-col'>Level</span>
+                            <span className='col message-col'>Message</span>
+                            <span className='col count-col'>Subscribers Count</span>
+                            <span className='col total-time-col'>Total Time Taken</span>
+                            <span className='col subscribers-time-col'>Get Subscribers Time Taken</span>
+                            <span className='col emails-time-col'>Send Emails Time Taken</span>
+                        </header>
+                        {logs.map((log, index) => (
+                            <div key={index} className='row'>
+                                <span className='col service-col'>{log.service}</span>
+                                <span className='col date-col'>{log.date}</span>
+                                <span className='col level-col'>{log.level}</span>
+                                <span className='col message-col'>{log.message}</span>
+                                <span className='col count-col'>{log.subscribersCount}</span>
+                                <span className='col total-time-col'>{log.totalTimeTaken}</span>
+                                <span className='col subscribers-time-col'>{log.getSubscribersTimeTaken}</span>
+                                <span className='col emails-time-col'>{log.sendEmailsTimeTaken}</span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
                 {isLoading | logs.length === 0 | isDone ? null : (
                     <button
