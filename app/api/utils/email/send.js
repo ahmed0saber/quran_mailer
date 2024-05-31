@@ -164,17 +164,17 @@ const sendDailyEmail = async ({ subscribers } = {}) => {
     const attachments = [
         {
             filename: "whatsapp.png",
-            path: "./public/social-icons/whatsapp.png",
+            path: "https://ahmed0saber.github.io/fonts/social-icons/whatsapp.png",
             cid: "01"
         },
         {
             filename: "telegram.png",
-            path: "./public/social-icons/telegram.png",
+            path: "https://ahmed0saber.github.io/fonts/social-icons/telegram.png",
             cid: "02"
         },
         {
             filename: "twitter.png",
-            path: "./public/social-icons/twitter.png",
+            path: "https://ahmed0saber.github.io/fonts/social-icons/twitter.png",
             cid: "03"
         },
     ]
