@@ -13,6 +13,12 @@ export default function Footer() {
                     هذا الرابط
                 </a>
             </p>
+            <p>
+                يمكنك متابعتنا عبر
+                <a href="https://www.linkedin.com/company/quran-mailer/" target="_blank">
+                    منصة لينكدان
+                </a>
+            </p>
         </footer>
     )
 }
