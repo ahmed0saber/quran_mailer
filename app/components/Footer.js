@@ -3,7 +3,7 @@ export default function Footer() {
         <footer className="footer">
             <p>
                 تم إنشاء الموقع بواسطة
-                <a href="https://ahmed0saber-links-tree.onrender.com/" target="_blank">
+                <a href="https://ahmed0saber-posts.onrender.com" target="_blank">
                     أحمد صابر
                 </a>
             </p>
