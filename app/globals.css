@@ -16,6 +16,8 @@
   --main-300: hsl(var(--hue), var(--saturation), calc(var(--lightness) - 20%));
   --main-500: hsl(var(--hue), var(--saturation), var(--lightness)); /* #007bff */
 
+  --focus-highlight: hsl(41, 78%, 64%);
+
   --loader: hsl(0, 0%, 20%);
 
   --surah-selection: hsla(120, 100%, 25%, 0.51);
@@ -75,6 +77,10 @@
     --scroll-surah-bg: hsla(0, 0%, 45%, 0.212);
     --scroll-surah-thumb: hsl(0, 0%, 60%);
   }
+}
+
+*:focus-visible {
+  outline: 2px solid var(--focus-highlight);
 }
 
 ::-moz-selection {
@@ -353,7 +359,7 @@ footer p a {
 }
 
 .form-input:focus {
-  border: 1px solid var(--main-500);
+  border: 1px solid transparent;
 }
 
 .form-textarea {
