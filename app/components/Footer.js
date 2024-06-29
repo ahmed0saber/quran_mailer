@@ -8,7 +8,7 @@ export default function Footer() {
                 </a>
             </p>
             <p>
-                هذا الموقع من المشاريع مفتوحة المصدر ، يمكنك المساهمة فى تطويره من خلال
+                هذا الموقع من المشاريع مفتوحة المصدر، يمكنك المساهمة فى تطويره من خلال
                 <a href="https://github.com/ahmed0saber/quran_mailer" target="_blank">
                     هذا الرابط
                 </a>

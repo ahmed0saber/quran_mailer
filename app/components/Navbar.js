@@ -11,7 +11,7 @@ export default function Navbar() {
             <div className="container">
                 <h3>
                     <Link href="/">
-                        ذكرنى بالقرآن
+                        ذكرني بالقرآن
                     </Link>
                 </h3>
                 <nav>
@@ -22,7 +22,7 @@ export default function Navbar() {
                         تواصل معنا
                     </Link>
                     <Link href="/subscribe" className={pathname === "/subscribe" ? "active" : ""}>
-                        اشترك الان
+                        اشترك الآن
                     </Link>
                 </nav>
             </div>

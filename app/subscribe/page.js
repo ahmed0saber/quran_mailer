@@ -23,10 +23,10 @@ export default function Subscribe() {
         <main>
             <section className="container">
                 <h1 className='heading-primary'>
-                    اشترك الان
+                    اشترك الآن
                 </h1>
                 <p className='text-primary'>
-                    بمجرد الاشتراك فى خدمتنا المجانية سوف تتلقى رسالة تحمل آية من القرآن يوميا عبر بريدك الالكترونى
+                    بمجرد الاشتراك في خدمتنا المجانية سوف تتلقى رسالة تحمل آية من القرآن يوميًا عبر بريدك الالكتروني
                 </p>
                 <form className="form" onSubmit={
                     isSubmitting ? (e) => e.preventDefault() : handleSubmit(subscribeByEmail)

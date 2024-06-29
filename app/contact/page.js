@@ -26,7 +26,7 @@ export default function Contact() {
                     تواصل معنا
                 </h1>
                 <p className='text-primary'>
-                    يسرنا تواصلكم معنا من خلال النموذج التالي عند الرغبة فى اخبارنا اى شئ يخص هذا الموقع الالكترونى
+                    يسرنا تواصلكم معنا من خلال النموذج التالي عند الرغبة فى إخبارنا أي شيءٍ يخص هذا الموقع الإلكتروني
                 </p>
                 <form className="form" onSubmit={
                     isSubmitting ? (e) => e.preventDefault() : handleSubmit(sendContactDetails)
