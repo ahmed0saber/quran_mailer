@@ -12,12 +12,12 @@
 
 .hero-section h1 {
     color: var(--main-text-2);
-    font-size: calc(1vw + 24px);
+    font-size: var(--fz-lg);
 }
 
 .hero-section p {
     color: var(--main-text-2);
-    font-size: calc(0.5vw + 16px);
+    font-size: var(--fz-sm);
     opacity: 0.9;
     margin: 4px 0 16px 0;
 }
@@ -52,12 +52,19 @@
     background-color: var(--white-150);
     color: var(--main-text-2);
     border: 2px solid var(--main-text-2);
+    font-size: var(--fz-btn);
 }
 
 .attribute p {
     text-align: center;
     color: var(--text-color);
     font-size: calc(0.4vw + 12px);
+}
+
+@media (min-width: 577px) {
+    .attribute p {
+        text-align: start;
+    }
 }
 
 .attribute p a {

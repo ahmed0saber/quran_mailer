@@ -24,6 +24,7 @@
     text-align: center;
     padding: 12px;
     cursor: pointer;
+    font-size: var(--fz-surah-name-card);
 }
 
 .quran-section-popup {
@@ -164,12 +165,16 @@
     padding-left: var(--popup-content-px);
 
     font-size: 20px;
-    line-height: 40px;
+    line-height: 45px;
 }
 
 .quran-section-popup .popup-content ::selection {
     color: var(--white);
     background-color: var(--surah-selection);
+}
+
+.quran-section-popup .popup-content .one-ayah {
+    font-size: var(--fz-ayah);
 }
 
 .quran-section-popup .popup-content .ayah-number {
@@ -208,7 +213,7 @@
     font-weight: bold;
     margin-block-end: var(--surah-name-mb);
     margin-bottom: var(--surah-name-mb);
-    font-size: larger;
+    font-size: var(--fz-surah-name-popup);
     display: flex;
     justify-content: center;
 }

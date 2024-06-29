@@ -12,7 +12,7 @@ export default function Ayah({ ayah }) {
         <>
             <span
                 onClick={toggleHighlight}
-                className={isHighlighted ? "highlighted" : null}
+                className={ `one-ayah ${isHighlighted ? "highlighted" : ""}`}
             >{ayah.text.replace("\n", "")}</span>
             <span class="ayah-number">{ayah.numberInSurah}</span>
         </>
