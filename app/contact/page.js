@@ -26,7 +26,7 @@ export default function Contact() {
                     تواصل معنا
                 </h1>
                 <p className='text-primary'>
-                    يسرنا تواصلكم معنا من خلال النموذج التالي عند الرغبة فى اخبارنا اى شئ يخص هذا الموقع الالكترونى
+                    يسرنا تواصلكم معنا من خلال النموذج التالي عند الرغبة فى إخبارنا أي شيءٍ يخص هذا الموقع الإلكتروني
                 </p>
                 <form className="form" onSubmit={
                     isSubmitting ? (e) => e.preventDefault() : handleSubmit(sendContactDetails)
@@ -54,9 +54,11 @@ export default function Contact() {
                             {...register("message", { required: true })}
                         ></textarea>
                     </div>
-                    <button className={isSubmitting ? "btn-dark is-loading" : "btn-dark"}>
-                        ارسال
-                    </button>
+                    <div className="input-container-btn">
+                        <button className={isSubmitting ? "btn-dark is-loading" : "btn-dark"}>
+                            ارسال
+                        </button>
+                    </div>
                 </form>
             </section>
         </main>

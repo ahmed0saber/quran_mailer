@@ -1,21 +1,23 @@
 .hero-section {
     width: 100%;
     min-height: calc(100svh - 68px);
-    background: #323232C2 url("/hero-section.webp") center center no-repeat;
+    background: transparent url("/hero-section.webp") center center no-repeat;
     background-size: cover;
-    background-blend-mode: overlay;
+    /* background-blend-mode: overlay; */
+    border-image-source: linear-gradient(hsla(240, 5%, 8%, 0.7), hsla(0, 9%, 3%, 0.9));
+    border-image-slice: fill 1;
     display: flex;
     align-items: center;
 }
 
 .hero-section h1 {
-    color: #FEFEFE;
-    font-size: calc(1vw + 24px);
+    color: var(--main-text-2);
+    font-size: var(--fz-lg);
 }
 
 .hero-section p {
-    color: #FEFEFE;
-    font-size: calc(0.5vw + 16px);
+    color: var(--main-text-2);
+    font-size: var(--fz-sm);
     opacity: 0.9;
     margin: 4px 0 16px 0;
 }
@@ -41,24 +43,33 @@
 }
 
 .hero-section .btn-primary {
-    background-color: #FEFEFE;
-    color: #323232;
+    background-color: var(--white);
+    color: var(--text-color);
+    font-size: var(--fz-btn);
 }
 
 .hero-section .btn-secondary {
-    background-color: #FEFEFE00;
-    color: #FEFEFE;
-    border: 2px solid #FEFEFE;
+    background-color: var(--white-150);
+    color: var(--main-text-2);
+    border: 2px solid var(--main-text-2);
+    font-size: var(--fz-btn);
 }
 
 .attribute p {
-    color: #323232;
+    text-align: center;
+    color: var(--text-color);
     font-size: calc(0.4vw + 12px);
 }
 
+@media (min-width: 577px) {
+    .attribute p {
+        text-align: start;
+    }
+}
+
 .attribute p a {
-    color: #007bff;
-    padding: 0px 4px;
+    color: var(--main-500);
+    padding: 0 4px;
 }
 
 @media (max-width: 425px) {

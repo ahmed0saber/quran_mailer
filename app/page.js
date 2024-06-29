@@ -20,11 +20,11 @@ export default function Home() {
             خدمة إرسال آيات قرآنية عبر البريد الالكتروني
           </h1>
           <p>
-            إشترك فى خدمتنا مجانا لتصلك بعض آيات القرآن بشكل دوري عبر بريدك الالكتروني
+            إشترك فى خدمتنا مجانًا لتصلك بعض آيات القرآن بشكل دوري عبر بريدك الالكتروني
           </p>
           <div className="btns-container">
             <Link href="./subscribe/" className="btn-primary">
-              اشترك الان
+              اشترك الآن
             </Link>
             <Link href="./contact/" className="btn-secondary">
               تواصل معنا

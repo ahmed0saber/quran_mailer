@@ -23,10 +23,10 @@ export default function Subscribe() {
         <main>
             <section className="container">
                 <h1 className='heading-primary'>
-                    اشترك الان
+                    اشترك الآن
                 </h1>
                 <p className='text-primary'>
-                    بمجرد الاشتراك فى خدمتنا المجانية سوف تتلقى رسالة تحمل آية من القرآن يوميا عبر بريدك الالكترونى
+                    بمجرد الاشتراك في خدمتنا المجانية سوف تتلقى رسالة تحمل آية من القرآن يوميًا عبر بريدك الالكتروني
                 </p>
                 <form className="form" onSubmit={
                     isSubmitting ? (e) => e.preventDefault() : handleSubmit(subscribeByEmail)
@@ -39,9 +39,11 @@ export default function Subscribe() {
                             {...register("email", { required: true })}
                         />
                     </div>
-                    <button className={isSubmitting ? "btn-dark is-loading" : "btn-dark"}>
-                        اشتراك
-                    </button>
+                    <div className="input-container-btn">
+                        <button className={isSubmitting ? "btn-dark is-loading" : "btn-dark"}>
+                            اشتراك
+                        </button>
+                    </div>
                 </form>
             </section>
         </main>
