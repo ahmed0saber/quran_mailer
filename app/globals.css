@@ -17,6 +17,9 @@
   --main-500: hsl(var(--hue), var(--saturation), var(--lightness)); /* #007bff */
 
   --loader: hsl(0, 0%, 20%);
+
+  --surah-selection: hsla(120, 100%, 25%, 0.51);
+  --surah-highlighted: hsla(120, 100%, 25%, 0.251);
 }
 
 @media (prefers-color-scheme: light) {
@@ -34,6 +37,10 @@
     --form-input-border: hsla(0, 0%, 20%, 0.196);
 
     --shadow: hsla(0, 0%, 20%, 0.071);
+
+    --shadow-surah: hsla(0, 0%, 20%, 0.071);
+    --scroll-surah-bg: hsl(0, 0%, 90%);
+    --scroll-surah-thumb: hsl(0, 0%, 30%);
   }
 }
 
@@ -52,6 +59,10 @@
     --form-input-border: hsla(0, 0%, 80%, 0.196);
 
     --shadow: hsla(0, 0%, 50%, 0.071);
+
+    --shadow-surah: hsla(0, 0%, 70%, 0.071);
+    --scroll-surah-bg: hsla(0, 0%, 45%, 0.212);
+    --scroll-surah-thumb: hsl(0, 0%, 60%);
   }
 }
 

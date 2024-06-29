@@ -39,9 +39,11 @@ export default function Subscribe() {
                             {...register("email", { required: true })}
                         />
                     </div>
-                    <button className={isSubmitting ? "btn-dark is-loading" : "btn-dark"}>
-                        اشتراك
-                    </button>
+                    <div className="input-container-btn">
+                        <button className={isSubmitting ? "btn-dark is-loading" : "btn-dark"}>
+                            اشتراك
+                        </button>
+                    </div>
                 </form>
             </section>
         </main>

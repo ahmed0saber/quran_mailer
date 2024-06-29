@@ -6,7 +6,10 @@
 }
 
 .quran-section .form-input {
-    margin-bottom: 12px;
+    --form-input-margin-bottom: 12px;
+
+    margin-block-end: var(--form-input-margin-bottom);
+    margin-bottom: var(--form-input-margin-bottom);
 }
 
 .quran-section-container {
@@ -16,137 +19,202 @@
 }
 
 .quran-section-container .surah-card {
-    background-color: #fbfbfb;
-    box-shadow: 0px 0px 2px 2px #32323212;
+    background-color: var(--surah-card-bg);
+    box-shadow: 0 0 2px 2px var(--shadow-surah);
     text-align: center;
     padding: 12px;
     cursor: pointer;
 }
 
 .quran-section-popup {
+    --popup-padding-top: 116px;
+    --popup-padding-x: 1rem;
+    --popup-padding-bottom: 1rem;
+    --popup-top: 0;
+    --popup-right: -100dvw;
+    --popup-height: 100dvh;
+    --popup-overflow-y: auto;
+    --popup-transition-duration: 0.5s;
+    --popup-scroll-width: 0;
+
+    height: var(--popup-height);
+    /* Fallback */
+    block-size: var(--popup-height);
+
+    padding-block-start: var(--popup-padding-top);
+    /* Fallback */
+    padding-top: var(--popup-padding-top);
+
+    padding-inline: var(--popup-padding-x);
+    /* Fallback */
+    padding-right: var(--popup-padding-x);
+    padding-left: var(--popup-padding-x);
+
     position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: white;
+
+    inset-block-start: var(--popup-top);
+    /* Fallback */
+    top: var(--popup-top);
+
+    inset-inline-start: var(--popup-right);
+    /* Fallback */
+    right: var(--popup-right);
+
     z-index: 1;
-    -webkit-transform: translateX(100%);
-    -moz-transform: translateX(100%);
-    -ms-transform: translateX(100%);
-    -o-transform: translateX(100%);
-    transform: translateX(100%);
-    overflow-y: scroll;
-    padding: 116px 16px 16px 16px;
+    background-color: var(--white);
+    color: var(--text-color);
+
+    overflow-block: var(--popup-overflow-y);
+    /* Fallback */
+    overflow-y: var(--popup-overflow-y);
+    scrollbar-width: var(--popup-scroll-width);
+    scrollbar-color: transparent transparent;
 }
 
 .quran-section-popup.active {
+    --popup-right: 0;
+
     -webkit-transform: translateX(0%);
     -moz-transform: translateX(0%);
     -ms-transform: translateX(0%);
     -o-transform: translateX(0%);
     transform: translateX(0%);
-    -webkit-transition: 0.7s ease;
-    -moz-transition: 0.7s ease;
-    -ms-transition: 0.7s ease;
-    -o-transition: 0.7s ease;
-    transition: 0.7s ease;
+    -webkit-transition: var(--popup-transition-duration) ease;
+    -moz-transition: var(--popup-transition-duration) ease;
+    -ms-transition: var(--popup-transition-duration) ease;
+    -o-transition: var(--popup-transition-duration) ease;
+    transition: var(--popup-transition-duration) ease;
 }
 
 .quran-section-popup::-webkit-scrollbar {
-    width: 10px;
-    background-color: #eee;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-    border-radius: 10px;
+    --scroll-width: 5px;
+    --scroll-border-radius: 10px;
+
+    width: var(--scroll-width);
+    background-color: var(--scroll-surah-bg);
+    -webkit-border-radius: var(--scroll-border-radius);
+    -moz-border-radius: var(--scroll-border-radius);
+    -ms-border-radius: var(--scroll-border-radius);
+    -o-border-radius: var(--scroll-border-radius);
+    border-radius: var(--scroll-border-radius);
 }
 
 .quran-section-popup::-webkit-scrollbar-thumb {
-    background-color: #eee;
-    background-color: green;
-    width: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-    border-radius: 10px;
+    width: var(--scroll-width);
+    background-color: var(--scroll-surah-thumb);
+    -webkit-border-radius: var(--scroll-border-radius);
+    -moz-border-radius: var(--scroll-border-radius);
+    -ms-border-radius: var(--scroll-border-radius);
+    -o-border-radius: var(--scroll-border-radius);
+    border-radius: var(--scroll-border-radius);
 }
 
 .modal-icons {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
-.quran-section-popup i {
+.quran-section-popup .modal-icon {
+    --one-side: 2rem;
+    --modal-icon-border-radius: 50%;
+    --transition-duration: 0.5s;
+
+    width: var(--one-side);
+    height: var(--one-side);
+    -webkit-border-radius: var(--modal-icon-border-radius);
+    -moz-border-radius: var(--modal-icon-border-radius);
+    -ms-border-radius: var(--modal-icon-border-radius);
+    -o-border-radius: var(--modal-icon-border-radius);
+    border-radius: var(--modal-icon-border-radius);
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 32px;
-    height: 32px;
     cursor: pointer;
-    background-color: #ccc;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
-    -webkit-transition: .5s ease;
-    -moz-transition: .5s ease;
-    -ms-transition: .5s ease;
-    -o-transition: .5s ease;
-    transition: .5s ease;
+    background-color: var(--shadow);
+    -webkit-transition: var(--transition-duration) ease;
+    -moz-transition: var(--transition-duration) ease;
+    -ms-transition: var(--transition-duration) ease;
+    -o-transition: var(--transition-duration) ease;
+    transition: var(--transition-duration) ease;
 }
 
-.quran-section-popup i svg {
-    width: 24px;
-    height: 24px;
+.quran-section-popup .modal-icon svg {
+    --svg-side: 20px;
+
+    width: var(--svg-side);
+    height: var(--svg-side);
 }
 
 .quran-section-popup i:hover {
-    background-color: black;
-    color: white;
+    background-color: var(--shadow);
 }
 
 .quran-section-popup .popup-content {
-    border-bottom: 1px solid green;
-    padding: 12px 0;
+    --popup-content-py: 12px;
+    --popup-content-px: 0;
+
+    border-bottom: 1px solid var(--text-color);
+    padding-block: var(--popup-content-py);
+    padding-top: var(--popup-content-py);
+    padding-bottom: var(--popup-content-py);
+
+    padding-inline: var(--popup-content-px);
+    padding-right: var(--popup-content-px);
+    padding-left: var(--popup-content-px);
+
     font-size: 20px;
     line-height: 40px;
 }
 
 .quran-section-popup .popup-content ::selection {
-    color: #FEFEFE;
-    background-color: green;
+    color: var(--white);
+    background-color: var(--surah-selection);
 }
 
 .quran-section-popup .popup-content .ayah-number {
-    width: 34px;
-    height: 34px;
-    font-size: 14px;
+    --ayah-side: 30px;
+    --ayah-my: 0;
+    --ayah-mx: 8px;
+    --ayah-border-radius: 50%;
+
+    width: var(--ayah-side);
+    height: var(--ayah-side);
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    margin: 0 8px;
-    border: 1px solid #323232;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
+
+    margin-block: var(--ayah-my);
+    margin-top: var(--ayah-my);
+    margin-bottom: var(--ayah-my);
+
+    margin-inline: var(--ayah-mx);
+    margin-right: var(--ayah-mx);
+    margin-left: var(--ayah-mx);
+
+    border: 1px solid var(--text-color);
+    -webkit-border-radius: var(--ayah-border-radius);
+    -moz-border-radius: var(--ayah-border-radius);
+    -ms-border-radius: var(--ayah-border-radius);
+    -o-border-radius: var(--ayah-border-radius);
+    border-radius: var(--ayah-border-radius);
+
+    font-size: 1rem;
 }
 
 .surah-name {
+    --surah-name-mb: 40px;
+
     font-weight: bold;
-    margin-bottom: 40px;
+    margin-block-end: var(--surah-name-mb);
+    margin-bottom: var(--surah-name-mb);
     font-size: larger;
     display: flex;
     justify-content: center;
 }
 
 .highlighted {
-    background-color: #00800040;
+    background-color: var(--surah-highlighted);
 }
 
 @media print {
@@ -172,7 +240,7 @@
     }
 
     .quran-section-popup::-webkit-scrollbar {
-        width: 0px;
+        width: 0;
     }
 
     .quran-section-popup .popup-content {

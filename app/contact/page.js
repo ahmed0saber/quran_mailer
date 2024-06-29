@@ -54,9 +54,11 @@ export default function Contact() {
                             {...register("message", { required: true })}
                         ></textarea>
                     </div>
-                    <button className={isSubmitting ? "btn-dark is-loading" : "btn-dark"}>
-                        ارسال
-                    </button>
+                    <div className="input-container-btn">
+                        <button className={isSubmitting ? "btn-dark is-loading" : "btn-dark"}>
+                            ارسال
+                        </button>
+                    </div>
                 </form>
             </section>
         </main>
