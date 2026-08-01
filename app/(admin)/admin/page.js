@@ -13,7 +13,7 @@ export default function page() {
         const user = getSession({ key: "current-user", defaultValue: null })
 
         if (user) {
-            return router.push("/admin/logs")
+            return router.push("/admin/home")
         }
     }, [])
 
@@ -32,7 +32,7 @@ export default function page() {
                     password
                 }
             })
-            router.push("/admin/logs")
+            router.push("/admin/home")
         } else {
             if (res.status === 401) {
                 alert("البيانات المدخلة غير صحيحة")

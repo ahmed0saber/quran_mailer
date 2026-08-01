@@ -1,7 +1,17 @@
+.subtitle {
+    color: #6b7280;
+    font-size: 0.92rem;
+    margin-bottom: 16px;
+}
+
 .logsContainer {
     margin-top: 12px;
     overflow-x: auto;
     direction: ltr;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+    padding: 4px;
 }
 
 .logsTable {
@@ -15,11 +25,12 @@
 .logsTable :global(.row) {
     display: flex;
     padding: 12px 0;
-    border-bottom: 1px solid #E1E1E1;
+    border-bottom: 1px solid #f3f4f6;
 }
 
 .logsTable :global(.col) {
     flex: 1 0;
+    padding: 0 8px;
 }
 
 .logsTable :global(.service-col) {

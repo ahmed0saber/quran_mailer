@@ -16,4 +16,10 @@ const getLogs = async ({ skip } = { skip: 0 }) => {
     return recorded_logs
 }
 
-export { addLog, getLogs }
+const getLogsCount = async () => {
+    return databaseConnection
+        .collection(process.env.LOGGING_MODEL)
+        .countDocuments()
+}
+
+export { addLog, getLogs, getLogsCount }
