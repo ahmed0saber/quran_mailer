@@ -195,4 +195,42 @@ const sendDailyEmail = async ({ subscribers } = {}) => {
     return Promise.all(emailPromises)
 }
 
-export { sendContactEmail, sendVerificationEmail, sendDailyEmail }
+const sendBroadcastEmail = async ({ subject, message, subscribers } = {}) => {
+    const baseUrl = process.env.APP_URL || 'https://quran-mailer.vercel.app'
+    
+    const emailPromises = subscribers.map(subscriber => {
+        const token = generateHmacToken(subscriber.email)
+        const unsubscribeLink = `${baseUrl}/api/unsubscribe?email=${encodeURIComponent(subscriber.email)}&token=${token}`
+
+        const formattedMessage = message.replace(/\n/g, '<br/>')
+
+        const html = `
+            <div dir="rtl" style="background-color:#F7F7F7;padding:12px;font-family:system-ui;">
+                <div style="background-color:#ffffff;padding:24px;border-radius:4px;border:1px solid #e0e0e0;">
+                    <p
+                        style="color:#323232;
+                        font-size:18px;
+                        margin:0;
+                        line-height:1.6;"
+                    >
+                        ${formattedMessage}
+                    </p>
+                </div>
+                <div>
+                    <p style="margin-top:24px;font-size:12px;color:#666;">
+                        إذا كنت لا ترغب في تلقي هذه الرسائل بعد الآن، يمكنك 
+                        <a href="${unsubscribeLink}" style="color:#666;text-decoration:underline;">
+                            إلغاء الاشتراك من هنا
+                        </a>.
+                    </p>
+                </div>
+            </div>
+        `
+
+        return sendEmail({ to: subscriber.email, subject, html })
+    })
+
+    return Promise.all(emailPromises)
+}
+
+export { sendContactEmail, sendVerificationEmail, sendDailyEmail, sendBroadcastEmail }

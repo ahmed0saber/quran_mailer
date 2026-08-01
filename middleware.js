@@ -6,5 +6,5 @@ export function middleware(request) {
 }
 
 export const config = {
-    matcher: ['/api/admin/login', '/api/admin/logs'],
+    matcher: ['/api/admin/login', '/api/admin/logs', '/api/admin/broadcast'],
 }

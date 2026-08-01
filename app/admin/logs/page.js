@@ -76,12 +76,20 @@ export default function page() {
                 <p className='text-primary'>
                     هنا يمكنك متابعة التقريرات الخاصة بالدوال التى تعمل على الخادم
                 </p>
-                <button
-                    className='btn-dark mt-3'
-                    onClick={logout}
-                >
-                    تسجيل الخروج
-                </button>
+                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                    <button
+                        className='btn-dark mt-3'
+                        onClick={() => router.push("/admin/broadcast")}
+                    >
+                        إرسال إشعار للجميع
+                    </button>
+                    <button
+                        className='btn-dark mt-3'
+                        onClick={logout}
+                    >
+                        تسجيل الخروج
+                    </button>
+                </div>
                 <div className={styles.logsContainer}>
                     <div className={styles.logsTable}>
                         <header className='row'>
