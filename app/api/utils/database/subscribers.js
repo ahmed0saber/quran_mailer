@@ -40,4 +40,10 @@ const verifySubscriberByToken = async (token) => {
     return result
 }
 
-export { getSubscribers, getSubscriberByEmail, addSubscriber, verifySubscriberByToken }
+const removeSubscriber = async (email) => {
+    return databaseConnection
+        .collection(process.env.SUBSCRIBERS_MODEL)
+        .deleteOne({ email })
+}
+
+export { getSubscribers, getSubscriberByEmail, addSubscriber, verifySubscriberByToken, removeSubscriber }

@@ -11,4 +11,9 @@ const generateRandomToken = () => {
     return randomToken
 }
 
-module.exports = { getRandomItemFromArray, generateRandomToken }
+const generateHmacToken = (data) => {
+    const { createHmac } = require('crypto')
+    return createHmac('sha256', process.env.UNSUBSCRIBE_SECRET).update(data).digest('hex')
+}
+
+module.exports = { getRandomItemFromArray, generateRandomToken, generateHmacToken }
