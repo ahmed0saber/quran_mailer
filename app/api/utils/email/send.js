@@ -61,138 +61,136 @@ const sendDailyEmail = async ({ subscribers } = {}) => {
     ]
 
     const baseUrl = process.env.APP_URL || 'https://quran-mailer.vercel.app'
-    const emailPromises = subscribers.map(subscriber => {
-        const token = generateHmacToken(subscriber.email)
-        const unsubscribeLink = `${baseUrl}/api/unsubscribe?email=${encodeURIComponent(subscriber.email)}&token=${token}`
+    const unsubscribeLink = `${baseUrl}/unsubscribe`
+    const bcc = subscribers.map(s => s.email).join(', ')
 
-        const html = `
-            <div dir="rtl" style="background-color:#F7F7F7;padding:12px;font-family:system-ui;">
+    const html = `
+        <div dir="rtl" style="background-color:#F7F7F7;padding:12px;font-family:system-ui;">
+            <h2
+                style="color:#323232;
+                width:fit-content;
+                border-bottom:2px solid #323232;"
+            >
+                الآية ${randomVerse.ayah} من سورة ${randomVerse.sora}
+            </h2>
+            <div style="padding:2px;border:2px solid #28a745;border-radius:4px;">
+                <p
+                    style="background-color:#28a745;
+                    color:#F7F7F7;
+                    padding:12px;
+                    font-size:18px;
+                    border-radius:4px;
+                    margin:0;"
+                >
+                    ${randomVerse.content}
+                </p>
+            </div>
+            <p
+                style="color:#323232;
+                font-size:18px;
+                margin:12px 0;"
+            >
+                شارك هذه الآية عبر المنصات التالية ولك أجرٌ على كل من يقرأها بإذن الله.
+            </p>
+            <div>
+                <a
+                    style="color:#0000;"
+                    target="_blank"
+                    href="https://api.whatsapp.com/send?text=${shareText}"
+                    title="Share on WhatsApp"
+                >
+                    <img
+                        src="cid:01"
+                        alt="WhatsApp Icon"
+                        width="48"
+                        height="48"
+                    />
+                </a>
+                <a
+                    style="color:#0000;"
+                    target="_blank"
+                    href="https://t.me/share/url?url=${encodeURI("https://quran-mailer.vercel.app")}&text=%0A${shareText}"
+                    title="Share on Telegram"
+                >
+                    <img
+                        src="cid:02"
+                        alt="Telegram Icon"
+                        width="48"
+                        height="48"
+                    />
+                </a>
+                <a
+                    style="color:#0000;"
+                    target="_blank"
+                    href="https://twitter.com/intent/tweet?text=${shareText}"
+                    title="Share on Twitter"
+                >
+                    <img
+                        src="cid:03"
+                        alt="Twitter Icon"
+                        width="48"
+                        height="48"
+                    />
+                </a>
+            </div>
+            ${randomVerse.tafseer ?
+            `<div>
                 <h2
                     style="color:#323232;
                     width:fit-content;
                     border-bottom:2px solid #323232;"
                 >
-                    الآية ${randomVerse.ayah} من سورة ${randomVerse.sora}
+                    تفسير الآية
                 </h2>
-                <div style="padding:2px;border:2px solid #28a745;border-radius:4px;">
-                    <p
-                        style="background-color:#28a745;
-                        color:#F7F7F7;
-                        padding:12px;
-                        font-size:18px;
-                        border-radius:4px;
-                        margin:0;"
-                    >
-                        ${randomVerse.content}
-                    </p>
-                </div>
                 <p
                     style="color:#323232;
                     font-size:18px;
-                    margin:12px 0;"
+                    margin:0;"
                 >
-                    شارك هذه الآية عبر المنصات التالية ولك أجرٌ على كل من يقرأها بإذن الله.
+                    ${randomVerse.tafseer.content}
                 </p>
-                <div>
-                    <a
-                        style="color:#0000;"
-                        target="_blank"
-                        href="https://api.whatsapp.com/send?text=${shareText}"
-                        title="Share on WhatsApp"
-                    >
-                        <img
-                            src="cid:01"
-                            alt="WhatsApp Icon"
-                            width="48"
-                            height="48"
-                        />
+                <p>
+                    يمكنك زيارة مصدر التفسير
+                    <a href=${randomVerse.tafseer.source}>
+                        من هنا
                     </a>
-                    <a
-                        style="color:#0000;"
-                        target="_blank"
-                        href="https://t.me/share/url?url=${encodeURI("https://quran-mailer.vercel.app")}&text=%0A${shareText}"
-                        title="Share on Telegram"
-                    >
-                        <img
-                            src="cid:02"
-                            alt="Telegram Icon"
-                            width="48"
-                            height="48"
-                        />
+                </p>
+            </div>`
+            : ""
+            }
+            <div>
+                <p>
+                    للتواصل معنا
+                    <a href="https://quran-mailer.vercel.app/contact">
+                        اضغط هنا
                     </a>
-                    <a
-                        style="color:#0000;"
-                        target="_blank"
-                        href="https://twitter.com/intent/tweet?text=${shareText}"
-                        title="Share on Twitter"
-                    >
-                        <img
-                            src="cid:03"
-                            alt="Twitter Icon"
-                            width="48"
-                            height="48"
-                        />
+                </p>
+                <p>
+                    للمساهمة فى إضافة الآيات أو تطوير هذه الخدمة
+                    <a href="https://github.com/ahmed0saber/quran_mailer">
+                        اضغط هنا
                     </a>
-                </div>
-                ${randomVerse.tafseer ?
-                `<div>
-                    <h2
-                        style="color:#323232;
-                        width:fit-content;
-                        border-bottom:2px solid #323232;"
-                    >
-                        تفسير الآية
-                    </h2>
-                    <p
-                        style="color:#323232;
-                        font-size:18px;
-                        margin:0;"
-                    >
-                        ${randomVerse.tafseer.content}
-                    </p>
-                    <p>
-                        يمكنك زيارة مصدر التفسير
-                        <a href=${randomVerse.tafseer.source}>
-                            من هنا
-                        </a>
-                    </p>
-                </div>`
-                : ""
-                }
-                <div>
-                    <p>
-                        للتواصل معنا
-                        <a href="https://quran-mailer.vercel.app/contact">
-                            اضغط هنا
-                        </a>
-                    </p>
-                    <p>
-                        للمساهمة فى إضافة الآيات أو تطوير هذه الخدمة
-                        <a href="https://github.com/ahmed0saber/quran_mailer">
-                            اضغط هنا
-                        </a>
-                    </p>
-                    <p>
-                        لا تنسى مشاركة
-                        <a href="https://quran-mailer.vercel.app/subscribe">
-                            هذا الرابط
-                        </a>
-                        مع أحبائك ليتمكنوا من الاشتراك فى هذه الخدمة
-                    </p>
-                    <p style="margin-top:24px;font-size:12px;color:#666;">
-                        إذا كنت لا ترغب في تلقي هذه الرسائل بعد الآن، يمكنك 
-                        <a href="${unsubscribeLink}" style="color:#666;text-decoration:underline;">
-                            إلغاء الاشتراك من هنا
-                        </a>.
-                    </p>
-                </div>
+                </p>
+                <p>
+                    لا تنسى مشاركة
+                    <a href="https://quran-mailer.vercel.app/subscribe">
+                        هذا الرابط
+                    </a>
+                    مع أحبائك ليتمكنوا من الاشتراك فى هذه الخدمة
+                </p>
+                <p style="margin-top:24px;font-size:12px;color:#666;">
+                    إذا كنت لا ترغب في تلقي هذه الرسائل بعد الآن، يمكنك 
+                    <a href="${unsubscribeLink}" style="color:#666;text-decoration:underline;">
+                        إلغاء الاشتراك من هنا
+                    </a>.
+                </p>
             </div>
-        `
+        </div>
+    `
 
-        return sendEmail({ to: subscriber.email, subject: "Daily Quran Verse", html, attachments })
-    })
-
-    return Promise.all(emailPromises)
+    // We use Promise.all with a single promise to maintain the same return type (an array of responses or similar)
+    // Wait, the original returned Promise.all(emailPromises). Since it's now one email, we can just return Promise.all([sendEmail(...)])
+    return Promise.all([sendEmail({ bcc, subject: "Daily Quran Verse", html, attachments })])
 }
 
 const sendBroadcastEmail = async ({ subject, message, subscribers } = {}) => {

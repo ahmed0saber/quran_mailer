@@ -1,8 +1,9 @@
-const sendEmail = async ({ to = process.env.GMAIL_USER, subject, html, attachments } = {}) => {
+const sendEmail = async ({ to, bcc, subject, html, attachments } = {}) => {
     const mailTransporter = require('../../../../lib/nodemailer');
     const mailOptions = {
         from: process.env.GMAIL_USER,
-        to,
+        to: to || process.env.GMAIL_USER, // fallback for bulk emails where to is generic
+        bcc,
         subject,
         html,
         attachments
