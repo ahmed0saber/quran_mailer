@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { getSession, removeSession } from "@/utils/session-storage";
 import SendIcon from "@/app/components/icons/SendIcon";
+import styles from "./style.module.css";
 
 export default function DailyNotifyPage() {
   const user = useRef(null);
@@ -59,75 +60,27 @@ export default function DailyNotifyPage() {
 
   return (
     <div>
-      <p
-        style={{ color: "#6b7280", fontSize: "0.92rem", marginBottom: "24px" }}
-      >
+      <p className={styles.subtitle}>
         يمكنك من هنا إرسال الرسائل اليومية لجميع المشتركين بشكل يدوي. سيتم إرسال
         آية أو سورة عشوائية حسب إعدادات النظام.
       </p>
 
       {statusMessage && (
         <div
-          style={{
-            margin: "0 0 24px",
-            padding: "12px 16px",
-            backgroundColor: statusMessage.includes("بنجاح")
-              ? "#ecfdf5"
-              : "#fef2f2",
-            color: statusMessage.includes("بنجاح") ? "#065f46" : "#991b1b",
-            borderRadius: "10px",
-            fontSize: "0.9rem",
-            fontWeight: 500,
-            border: `1px solid ${statusMessage.includes("بنجاح") ? "#a7f3d0" : "#fecaca"}`,
-          }}
+          className={`${styles.statusMsg} ${statusMessage.includes("بنجاح") ? styles.statusSuccess : styles.statusError}`}
         >
           {statusMessage}
         </div>
       )}
 
-      <div
-        style={{
-          background: "#fff",
-          padding: "32px",
-          borderRadius: "14px",
-          boxShadow:
-            "0 1px 4px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "20px",
-          maxWidth: "500px",
-        }}
-      >
-        <div
-          style={{
-            width: "64px",
-            height: "64px",
-            borderRadius: "50%",
-            background: "#eef2ff",
-            color: "#6366f1",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+      <div className={styles.card}>
+        <div className={styles.iconWrapper}>
           <SendIcon size={32} />
         </div>
 
-        <div style={{ textAlign: "center" }}>
-          <h2
-            style={{
-              fontSize: "1.25rem",
-              color: "#1f2937",
-              marginBottom: "8px",
-              fontWeight: "700",
-            }}
-          >
-            إرسال الرسائل اليومية
-          </h2>
-          <p
-            style={{ color: "#6b7280", fontSize: "0.9rem", lineHeight: "1.5" }}
-          >
+        <div className={styles.textCenter}>
+          <h2 className={styles.title}>إرسال الرسائل اليومية</h2>
+          <p className={styles.description}>
             سيتم إرسال بريد إلكتروني لجميع المشتركين المُوثقين يحتوي على المحتوى
             اليومي. قد تستغرق هذه العملية بعض الوقت حسب عدد المشتركين.
           </p>
@@ -135,16 +88,7 @@ export default function DailyNotifyPage() {
 
         <button
           onClick={triggerDailyNotify}
-          className={isSubmitting ? "btn-dark is-loading" : "btn-dark"}
-          style={{
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "8px",
-            padding: "12px",
-            marginTop: "8px",
-          }}
+          className={styles.submitBtn}
           disabled={isSubmitting}
         >
           {isSubmitting ? (

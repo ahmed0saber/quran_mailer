@@ -125,11 +125,12 @@
     background: #fff;
     border-radius: 14px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
-    overflow: hidden;
+    overflow-x: auto;
 }
 
 .usersTable {
     width: 100%;
+    min-width: 650px;
     border-collapse: collapse;
 }
 
@@ -207,6 +208,7 @@
     border-radius: 20px;
     font-size: 0.78rem;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .statusVerified {
@@ -218,9 +220,19 @@
     background: #fef3c7;
     color: #92400e;
 }
-
+/* ===== Actions Cell ===== */
+.actionsCell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
 /* ===== Verify Button ===== */
 .verifyBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     padding: 6px 16px;
     background: #ecfdf5;
     color: #059669;
@@ -243,6 +255,9 @@
 }
 
 .unverifyBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     padding: 6px 16px;
     background: #fffbeb;
     color: #d97706;
@@ -252,7 +267,6 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-    margin-right: 8px;
 }
 
 .unverifyBtn:hover {
@@ -266,6 +280,9 @@
 }
 
 .deleteBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     padding: 6px 16px;
     background: #fef2f2;
     color: #dc2626;
@@ -275,7 +292,6 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
-    margin-right: 8px;
 }
 
 .deleteBtn:hover {
@@ -512,10 +528,15 @@
 
     .toolbarRight {
         flex-direction: column;
+        align-items: stretch;
     }
 
     .searchBox {
         max-width: 100%;
+    }
+
+    .filterBox, .filterSelect {
+        width: 100%;
     }
 
     .addBtn {
