@@ -68,7 +68,8 @@
     background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 10px;
-    padding: 9px 36px 9px 14px;
+    padding: 9px 14px 9px 36px;
+    min-width: 170px;
     font-size: 0.9rem;
     color: #374151;
     cursor: pointer;

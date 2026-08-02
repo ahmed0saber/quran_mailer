@@ -124,7 +124,7 @@ export default function AdminHomePage() {
             <h2 className={styles.sectionTitle}>آخر المستخدمين المُوثقين</h2>
             <button
               className={styles.viewAllBtn}
-              onClick={() => router.push("/admin/users")}
+              onClick={() => router.push("/admin/users?filter=verified")}
             >
               عرض الكل ←
             </button>
@@ -156,7 +156,7 @@ export default function AdminHomePage() {
             </h2>
             <button
               className={styles.viewAllBtn}
-              onClick={() => router.push("/admin/users")}
+              onClick={() => router.push("/admin/users?filter=unverified")}
             >
               عرض الكل ←
             </button>

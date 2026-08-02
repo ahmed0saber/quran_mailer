@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState, useCallback, Suspense } from "react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { getSession, removeSession } from "@/utils/session-storage";
 import SearchIcon from "@/app/components/icons/SearchIcon";
 import InboxIcon from "@/app/components/icons/InboxIcon";
@@ -12,7 +12,7 @@ import CloseIcon from "@/app/components/icons/CloseIcon";
 import TrashIcon from "@/app/components/icons/TrashIcon";
 import styles from "./style.module.css";
 
-export default function AdminUsersPage() {
+function UsersPageContent() {
   const [users, setUsers] = useState([]);
   const [total, setTotal] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +29,17 @@ export default function AdminUsersPage() {
   const [hasMore, setHasMore] = useState(true);
   const user = useRef(getSession({ key: "current-user", defaultValue: null }));
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
   const searchTimeoutRef = useRef(null);
+
+  // Initialize state from URL on mount
+  useEffect(() => {
+    const urlFilter = searchParams.get("filter");
+    const urlSearch = searchParams.get("search");
+    if (urlFilter) setFilter(urlFilter);
+    if (urlSearch) setSearch(urlSearch);
+  }, []);
 
   useEffect(() => {
     if (!user.current) {
@@ -37,12 +47,29 @@ export default function AdminUsersPage() {
     }
   }, []);
 
+  // Sync state to URL and fetch users
   useEffect(() => {
     const controller = new AbortController();
     // Reset and fetch whenever filter or search changes
     skipRef.current = 0;
     setUsers([]);
     setHasMore(true);
+
+    const params = new URLSearchParams(searchParams.toString());
+    if (filter !== "all") {
+      params.set("filter", filter);
+    } else {
+      params.delete("filter");
+    }
+
+    if (search) {
+      params.set("search", search);
+    } else {
+      params.delete("search");
+    }
+
+    router.replace(`${pathname}?${params.toString()}`);
+
     fetchUsers({ signal: controller.signal, reset: true });
 
     return () => controller.abort({ message: "Component Unmounted!" });
@@ -454,5 +481,19 @@ export default function AdminUsersPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function AdminUsersPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="component-loader">
+          <div></div>
+        </div>
+      }
+    >
+      <UsersPageContent />
+    </Suspense>
   );
 }
