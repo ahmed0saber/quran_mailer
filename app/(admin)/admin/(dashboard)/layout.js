@@ -13,6 +13,7 @@ import CloseIcon from "@/app/components/icons/CloseIcon";
 import MenuIcon from "@/app/components/icons/MenuIcon";
 import DownloadIcon from "@/app/components/icons/DownloadIcon";
 import SettingsIcon from "@/app/components/icons/SettingsIcon";
+import TargetIcon from "@/app/components/icons/TargetIcon";
 import styles from "./style.module.css";
 
 const navLinks = [
@@ -21,6 +22,7 @@ const navLinks = [
   { href: "/admin/logs", label: "السجلات", Icon: LogsIcon },
   { href: "/admin/broadcast", label: "الإشعارات", Icon: MailIcon },
   { href: "/admin/daily", label: "الرسائل اليومية", Icon: SendIcon },
+  { href: "/admin/targeted", label: "رسائل مخصصة", Icon: TargetIcon },
   { href: "/admin/backup", label: "النسخ الاحتياطي", Icon: DownloadIcon },
   { href: "/admin/system", label: "إعدادات النظام", Icon: SettingsIcon },
 ];
