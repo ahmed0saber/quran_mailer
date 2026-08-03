@@ -1,0 +1,120 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #fff;
+    padding: 32px;
+    border-radius: 14px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-top: 4px solid #ef4444; /* Red top border for warning */
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.iconWrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #fef2f2;
+    color: #ef4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardTitle {
+    font-size: 1.2rem;
+    color: #1f2937;
+    font-weight: 700;
+}
+
+.description {
+    color: #6b7280;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.actionsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+@media (min-width: 768px) {
+    .actionsGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.dangerBtn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 16px;
+    background: #fff;
+    color: #ef4444;
+    border: 1px solid #f87171;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.dangerBtn:hover {
+    background: #fef2f2;
+    border-color: #ef4444;
+}
+
+.dangerBtnSolid {
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.dangerBtnSolid:hover {
+    background: #dc2626;
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+    border-color: transparent;
+}
+
+.dangerBtn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.statusMsg {
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 16px;
+}
+
+.statusSuccess {
+    background-color: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.statusError {
+    background-color: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
