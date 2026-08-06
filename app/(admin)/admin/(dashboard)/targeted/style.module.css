@@ -16,6 +16,8 @@
     padding: 24px;
     border-radius: 14px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.04);
+    min-width: 0;
+    overflow: hidden;
 }
 
 .cardTitle {
@@ -287,4 +289,125 @@
     background-color: #fef2f2;
     color: #991b1b;
     border: 1px solid #fecaca;
+}
+
+/* ===== Tablet Responsive ===== */
+@media (max-width: 768px) {
+    .container {
+        gap: 16px;
+    }
+
+    .card {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .cardTitle {
+        font-size: 1.1rem;
+    }
+
+    .toolbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .searchBox {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .filterSelect {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .usersTable {
+        min-width: 400px;
+    }
+
+    .usersTable th, .usersTable td {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+
+    .recipientsContainer {
+        max-height: 120px;
+    }
+
+    .recipientTag {
+        font-size: 0.8rem;
+        padding: 3px 8px;
+    }
+
+    .input, .textarea {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+    }
+
+    .textarea {
+        min-height: 120px;
+    }
+
+    .submitBtn {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 480px) {
+    .card {
+        padding: 14px;
+        border-radius: 10px;
+    }
+
+    .cardTitle {
+        font-size: 1rem;
+    }
+
+    .subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 14px;
+    }
+
+    .searchBox {
+        padding: 8px 12px;
+    }
+
+    .searchInput {
+        font-size: 0.85rem;
+    }
+
+    .filterSelect {
+        padding: 8px 10px 8px 30px;
+        font-size: 0.85rem;
+    }
+
+    .usersTable {
+        min-width: 320px;
+    }
+
+    .usersTable th, .usersTable td {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+
+    .badge {
+        padding: 3px 8px;
+        font-size: 0.7rem;
+    }
+
+    .loadMoreBtn {
+        padding: 10px;
+        font-size: 0.85rem;
+    }
+
+    .label {
+        font-size: 0.85rem;
+    }
+
+    .input, .textarea {
+        padding: 10px 12px;
+        border-radius: 8px;
+    }
 }
