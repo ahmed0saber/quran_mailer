@@ -1,0 +1,30 @@
+# Quran Mailer
+
+> Quran Mailer (خدمة إرسال آيات قرآنية عبر البريد الإلكتروني) is a free, open-source service that emails subscribers a randomly selected Quranic verse every day. The website is in Arabic and also lets visitors read the full Quran online.
+
+Subscribing only requires an email address. After subscribing, the user receives a verification email and must confirm it before daily verses start arriving. Each daily email includes a link to unsubscribe. There are no accounts, fees, or ads.
+
+The project is built with Next.js, uses MongoDB Atlas for subscriber storage, Nodemailer (Gmail) for sending email, and Vercel Cron Jobs to send the daily verse.
+
+## Pages
+
+- [Home](https://quran-mailer.vercel.app/): Overview of the service and an in-page Quran reader listing all surahs and their ayahs
+- [Subscribe](https://quran-mailer.vercel.app/subscribe): Enter an email address to subscribe to the daily verse
+- [Unsubscribe](https://quran-mailer.vercel.app/unsubscribe): Request an unsubscribe link by email
+- [Contact](https://quran-mailer.vercel.app/contact): Send a message to the maintainers
+
+## Public API
+
+- [List of surahs](https://quran-mailer.vercel.app/api/surahs): JSON array of all 114 surahs
+- [Ayahs of a surah](https://quran-mailer.vercel.app/api/surah-ayahs/1): JSON ayahs for the surah whose id is given in the path (1–114)
+
+## Source code
+
+- [GitHub repository](https://github.com/ahmed0saber/quran_mailer): Source code, setup instructions, and contribution guide
+- [LinkedIn](https://www.linkedin.com/company/quran-mailer/): Project page
+
+## Optional
+
+- [Contributing guide](https://github.com/ahmed0saber/quran_mailer/blob/main/CONTRIBUTING.md)
+- [Code of conduct](https://github.com/ahmed0saber/quran_mailer/blob/main/CODE_OF_CONDUCT.md)
+- [License](https://github.com/ahmed0saber/quran_mailer/blob/main/LICENSE.md)
